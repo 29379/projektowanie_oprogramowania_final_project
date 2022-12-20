@@ -20,27 +20,34 @@ namespace projektowanie_oprogramowania_final_project.Models
         [RegularExpression(@"^\\+?[1-9][0-9]{7,14}$")]
         public string? PhoneNumber { get; set; }
         [Required]
-        protected string Password;
-        public void SetPassword(string password)
+        protected string _Password;
+        [Required]
+        public string Password
         {
-            try
+            get
             {
-                if (Regex.IsMatch(password, @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$"))
+                return this._Password;
+            }
+            set
+            {
+                try
                 {
-                    Password = password;
+                    if (Regex.IsMatch(value, @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$"))
+                    {
+                        _Password = value;
+                    }
+                }
+                catch (ArgumentException arg)
+                {
+                    Console.WriteLine(arg.Source);
+                }
+                catch (TimeoutException time)
+                {
+                    Console.WriteLine(time.Source);
                 }
             }
-            catch (ArgumentException arg)
-            {
-                Console.WriteLine(arg.Source);
-            }
-            catch (TimeoutException time)
-            {
-                Console.WriteLine(time.Source);
-            }
         }
-        public string GetPassword() => Password;
-
+        
         public User() { }
 
         public User(int id, string name, string surname, string email, string phoneNumber, string password) 
