@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace projektowanie_oprogramowania_final_project.Models
