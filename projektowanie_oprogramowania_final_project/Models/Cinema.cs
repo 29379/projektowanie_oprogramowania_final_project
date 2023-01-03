@@ -1,15 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cinema
+namespace projektowanie_oprogramowania_final_project.Models
 {
-
-    public struct InstitutionAddress
+    public class InstitutionAddress //  'Structs are not a supported Entity Framework type', więc zmieniłem na pomniejszą klasę
     {
+        [Key]
+        public int Id { get; set; }
+        
+        [Required]
         public string Street { get; set; }
+
+        [Required]
         public int Number { get; set; }
+        
+        [Required]
         public string ZipCode { get; set; }
+
+        public InstitutionAddress() { }
 
         public InstitutionAddress(string street, int number, string zipCode)
         {
@@ -23,13 +32,16 @@ namespace Cinema
 
     public class Cinema
     {
+        [Key]
+        public int CinemaId { get; set; }
+
         [Required]
         public InstitutionAddress Address { get; set; }
 
         [Required]
-        public List<Object> ScreeningRoom { get; set; }
+        public List<Room> ScreeningRooms { get; set; }
 
         [Required]
-        public List<Employee.Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
     }
 }

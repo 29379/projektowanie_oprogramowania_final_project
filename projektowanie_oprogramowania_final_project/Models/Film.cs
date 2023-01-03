@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
+using System.Collections.Generic;
 
 namespace projektowanie_oprogramowania_final_project.Models
 {
@@ -9,17 +10,19 @@ namespace projektowanie_oprogramowania_final_project.Models
         public int FilmId { get; set; }
 
         [Required]
-        public string Tytul { get; set; }
+        public string Title { get; set; }
 
         [Required]
-        public string Rezyser { get; set; }
+        public string Director { get; set; }
 
         [DataType(DataType.DateTime)]
-        public DateTime DataWydania { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
-        public string Opis { get; set; }
+        public string Description { get; set; }
 
         [Required]
-        public TimeSpan CzasTrwania { get; set; }
+        public TimeSpan RunningTime { get; set; }
+
+        public List<Showing> Showings { get; set; }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Customer
+namespace projektowanie_oprogramowania_final_project.Models
 {
-    public class Customer : User.User
+    public class Customer : User
     {
-
+        public Customer() { }
     }
 }

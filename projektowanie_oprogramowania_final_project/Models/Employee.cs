@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Employee
+namespace projektowanie_oprogramowania_final_project.Models
 {
 
     public enum Position
@@ -11,12 +9,14 @@ namespace Employee
         common
     }
 
-    public class Employee : User.User
+    public class Employee : User
     {
         [Required]
         public Position Role { get; set; }
 
-        public Employee(int id, string name, string surname, string email, string phoneNumber, string password, Position role)
+        public Employee() { }
+
+        public Employee(Position role, int id, string name, string surname, string email, string password, string phoneNumber = null)
         {
             UserId = id;
             Name = name;
@@ -27,7 +27,8 @@ namespace Employee
             Role = role;
         }
 
-        public Employee(int id, string name, string surname, string email, string password, Position role)
+        /*
+         public Employee(int id, string name, string surname, string email, string password, Position role)
             : this(id, name, surname, email, null, password, role) { }
 
         public Employee(int id, string name, string surname, string email, string phoneNumber, string password)
@@ -35,5 +36,6 @@ namespace Employee
 
         public Employee(int id, string name, string surname, string email, string password)
             : this(id, name, surname, email, null, password, Position.common) { }
+         */
     }
 }

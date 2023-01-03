@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 namespace projektowanie_oprogramowania_final_project.Models
@@ -11,16 +12,20 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         [Required]
         public string Name { get; set; }
+        
         [Required]
         public string Surname { get; set; }
+        
         [Required]
         [RegularExpression(@"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")]
         public string Email { get; set; }
+        
         [RegularExpression(@"^\\+?[1-9][0-9]{7,14}$")]
         public string? PhoneNumber { get; set; }
+        
         [Required]
         protected string _Password;
-        [Required]
+
         public string Password
         {
             get
@@ -49,7 +54,7 @@ namespace projektowanie_oprogramowania_final_project.Models
         
         public User() { }
 
-        public User(int id, string name, string surname, string email, string phoneNumber, string password) 
+        public User(int id, string name, string surname, string email, string password, string phoneNumber = null) 
         {
             UserId = id;
             Name = name;
@@ -58,8 +63,10 @@ namespace projektowanie_oprogramowania_final_project.Models
             PhoneNumber = phoneNumber;
             Password = password;
         }
-
+        
+        /*
         public User(int id, string name, string surname, string email, string password)
             : this(id, name, surname, email, null, password) { }
+        */
     }
 }
