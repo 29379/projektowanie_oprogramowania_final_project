@@ -21,5 +21,16 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         [Required]
         public Payment ChosenPayment { get; set; } 
+
+        public Reservation() { }
+
+        public Reservation(int reservationId, DateTime reservationTime, double price, List<Seat> seats, Payment chosenPayment)
+        {
+            ReservationId = reservationId;
+            ReservationTime = reservationTime;
+            Price = price;
+            Seats = seats;
+            ChosenPayment = chosenPayment;
+        }
     }
 }

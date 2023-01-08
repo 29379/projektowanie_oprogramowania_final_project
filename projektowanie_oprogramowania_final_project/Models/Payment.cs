@@ -21,5 +21,13 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         [Required]
         public PaymentMethod Method { get; set; }
+
+        public Payment() { }
+
+        public Payment(DateTime time, PaymentMethod method)
+        {
+            PaymentTime = time;
+            Method = method;
+        }
     }
 }

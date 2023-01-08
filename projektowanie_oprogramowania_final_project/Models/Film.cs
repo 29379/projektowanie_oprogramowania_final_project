@@ -23,6 +23,15 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public TimeSpan RunningTime { get; set; }
 
-        public List<Showing> Showings { get; set; }
+        public Film() { }
+        public Film(int filmId, string title, string director, DateTime releaseDate, string description, TimeSpan runningTime)
+        {
+            FilmId = filmId;
+            Title = title;
+            Director = director;
+            ReleaseDate = releaseDate;
+            Description = description;
+            RunningTime = runningTime;
+        }
     }
 }

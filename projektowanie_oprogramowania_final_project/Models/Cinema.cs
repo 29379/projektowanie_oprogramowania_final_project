@@ -43,5 +43,19 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         [Required]
         public List<Employee> Employees { get; set; }
+
+        [Required]
+        public List<Showing> Showings { get; set; }
+
+        public Cinema() { }
+
+        public Cinema(int cinemaId, InstitutionAddress address, List<Room> screeningRooms, List<Employee> employees, List<Showing> showings)
+        {
+            CinemaId = cinemaId;
+            Address = address;
+            ScreeningRooms = screeningRooms;
+            Employees = employees;
+            Showings = showings;
+        }
     }
 }

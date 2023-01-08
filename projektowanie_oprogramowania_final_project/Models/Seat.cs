@@ -12,5 +12,14 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         [Required]
         public int SeatNumber { get; set; }
+
+        public Seat() { }
+
+        public Seat(int seatId, int row, int seatNumber)
+        {
+            SeatId = seatId;
+            Row = row;
+            SeatNumber = seatNumber;
+        }
     }
 }

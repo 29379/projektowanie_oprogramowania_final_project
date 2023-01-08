@@ -15,5 +15,13 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public List<Seat> Seats { get; set; }
 
+        public Room() { }
+
+        public Room(int roomId, int roomNumber, List<Seat> seats)
+        {
+            RoomId = roomId;
+            RoomNumber = roomNumber;
+            Seats = seats;
+        }
     }
 }

@@ -40,5 +40,25 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public List<Reservation> Reservations { get; set; }
 
+        [Required]
+        public Film ShowedFilm { get; set; }
+
+        [Required]
+        [DataType(DataType.Currency)]
+        [Range(0.0, Double.MaxValue, ErrorMessage = "The value has to be bigger than 0")]
+        public double Price { get; set; }
+
+        public Showing() { }
+        public Showing(int showingId, DateTime showtime, Room screeningRoom, LanguageVersion language, TechnologyVersion technology, List<Reservation> reservations, Film showedFilm, double price)
+        {
+            ShowingId = showingId;
+            Showtime = showtime;
+            ScreeningRoom = screeningRoom;
+            Language = language;
+            Technology = technology;
+            Reservations = reservations;
+            ShowedFilm = showedFilm;
+            Price = price;
+        }
     }
 }
