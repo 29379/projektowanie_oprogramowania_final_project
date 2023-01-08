@@ -20,9 +20,6 @@ namespace projektowanie_oprogramowania_final_project.Models
         public DateTime PaymentTime { get; set; }
 
         [Required]
-        public LanguageVersion Language { get; set; }
-
-        [Required]
         public PaymentMethod Method { get; set; }
     }
 }

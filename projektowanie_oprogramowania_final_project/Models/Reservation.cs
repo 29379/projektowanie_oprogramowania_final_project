@@ -19,10 +19,7 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public List<Seat> Seats { get; set; }
 
-        /*  nie wiem jak to nazwać, nie chcę 'Payment' bo to nazwa klasy
-            i nie chcę 'PaymentMethod' bo to nazwa wewnętrznego enuma
-            w Paymencie */
         [Required]
-        public Payment PPayment { get; set; } 
+        public Payment ChosenPayment { get; set; } 
     }
 }

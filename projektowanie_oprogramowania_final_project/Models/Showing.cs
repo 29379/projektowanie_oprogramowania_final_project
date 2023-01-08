@@ -34,12 +34,9 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public TechnologyVersion Technology { get; set; }
 
-        /*  Może takie rozwiązanie? Może rezerwacje wpiąć do seansu?
-            Wtedy załatwiony byłby problem tego czy wiemy, czy miejsce jest
-            zajęte, bo jeśli byśmy chcieli się dowiedzieć czy miejsce wolne dla
+        /* Jeśli byśmy chcieli się dowiedzieć czy miejsce wolne dla
             danego seansu, to loopowało by się po jego rezerwacjach i tam sprawdzało
-            które miejsca są wolne a które zajęte. To chyba byłoby git? Czy nie?
-         */
+            które miejsca są wolne a które zajęte.  */
         [Required]
         public List<Reservation> Reservations { get; set; }
 
