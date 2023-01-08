@@ -46,7 +46,6 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     PaymentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PaymentTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Language = table.Column<int>(type: "int", nullable: false),
                     Method = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -129,14 +128,22 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     ScreeningRoomRoomId = table.Column<int>(type: "int", nullable: true),
                     Language = table.Column<int>(type: "int", nullable: false),
                     Technology = table.Column<int>(type: "int", nullable: false),
-                    FilmId = table.Column<int>(type: "int", nullable: true)
+                    ShowedFilmFilmId = table.Column<int>(type: "int", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    CinemaId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Showings", x => x.ShowingId);
                     table.ForeignKey(
-                        name: "FK_Showings_Films_FilmId",
-                        column: x => x.FilmId,
+                        name: "FK_Showings_Cinemas_CinemaId",
+                        column: x => x.CinemaId,
+                        principalTable: "Cinemas",
+                        principalColumn: "CinemaId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Showings_Films_ShowedFilmFilmId",
+                        column: x => x.ShowedFilmFilmId,
                         principalTable: "Films",
                         principalColumn: "FilmId",
                         onDelete: ReferentialAction.Restrict);
@@ -156,15 +163,16 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReservationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    PPaymentPaymentId = table.Column<int>(type: "int", nullable: true),
+                    ChosenPaymentPaymentId = table.Column<int>(type: "int", nullable: true),
+                    CustomerUserId = table.Column<int>(type: "int", nullable: true),
                     ShowingId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservations", x => x.ReservationId);
                     table.ForeignKey(
-                        name: "FK_Reservations_Payments_PPaymentPaymentId",
-                        column: x => x.PPaymentPaymentId,
+                        name: "FK_Reservations_Payments_ChosenPaymentPaymentId",
+                        column: x => x.ChosenPaymentPaymentId,
                         principalTable: "Payments",
                         principalColumn: "PaymentId",
                         onDelete: ReferentialAction.Restrict);
@@ -173,6 +181,12 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         column: x => x.ShowingId,
                         principalTable: "Showings",
                         principalColumn: "ShowingId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Reservations_Users_CustomerUserId",
+                        column: x => x.CustomerUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -184,7 +198,6 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Row = table.Column<int>(type: "int", nullable: false),
                     SeatNumber = table.Column<int>(type: "int", nullable: false),
-                    Occupied = table.Column<bool>(type: "bit", nullable: false),
                     ReservationId = table.Column<int>(type: "int", nullable: true),
                     RoomId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -211,9 +224,14 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservations_PPaymentPaymentId",
+                name: "IX_Reservations_ChosenPaymentPaymentId",
                 table: "Reservations",
-                column: "PPaymentPaymentId");
+                column: "ChosenPaymentPaymentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_CustomerUserId",
+                table: "Reservations",
+                column: "CustomerUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_ShowingId",
@@ -236,14 +254,19 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Showings_FilmId",
+                name: "IX_Showings_CinemaId",
                 table: "Showings",
-                column: "FilmId");
+                column: "CinemaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Showings_ScreeningRoomRoomId",
                 table: "Showings",
                 column: "ScreeningRoomRoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Showings_ShowedFilmFilmId",
+                table: "Showings",
+                column: "ShowedFilmFilmId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_CinemaId",
@@ -257,9 +280,6 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                 name: "Seats");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Reservations");
 
             migrationBuilder.DropTable(
@@ -267,6 +287,9 @@ namespace projektowanie_oprogramowania_final_project.Migrations
 
             migrationBuilder.DropTable(
                 name: "Showings");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Films");
