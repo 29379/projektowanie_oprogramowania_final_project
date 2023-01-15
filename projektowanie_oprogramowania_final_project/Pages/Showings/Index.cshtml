@@ -1,0 +1,60 @@
+﻿@page
+@model projektowanie_oprogramowania_final_project.Pages.Showings.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Showtime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Technology)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Cinema)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Showing) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Showtime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Technology)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cinema.CinemaId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ShowingId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ShowingId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ShowingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

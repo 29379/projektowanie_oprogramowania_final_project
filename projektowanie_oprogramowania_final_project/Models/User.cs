@@ -17,10 +17,14 @@ namespace projektowanie_oprogramowania_final_project.Models
         public string Surname { get; set; }
         
         [Required]
-        [RegularExpression(@"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")]
+        //[RegularExpression(@"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")]
+        //[RegularExpression(@"^\\S+@\\S+\\.\\S+$")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")]
         public string Email { get; set; }
-        
-        [RegularExpression(@"^\\+?[1-9][0-9]{7,14}$")]
+
+        //[RegularExpression(@"^\\+?[1-9][0-9]{7,14}$")]
+        //[RegularExpression(@"^[1-9]\d{2}-[1-9]\d{2}-\d{4}$")]
+        [RegularExpression(@"^\+48\d{9}$")]
         public string? PhoneNumber { get; set; }
         
         [Required]

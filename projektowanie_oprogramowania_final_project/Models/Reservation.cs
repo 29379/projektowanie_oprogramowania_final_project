@@ -6,6 +6,13 @@ namespace projektowanie_oprogramowania_final_project.Models
 {
     public class Reservation
     {
+        public enum PaymentMethod
+        {
+            blik,
+            PayU,
+            bankTransfer
+        }
+
         [Key]
         public int ReservationId { get; set; }
 
@@ -14,17 +21,24 @@ namespace projektowanie_oprogramowania_final_project.Models
         public DateTime ReservationTime { get; set; }
 
         [Required]
-        public Double Price { get; set; }
+        public double Price { get; set; }
 
         [Required]
         public List<Seat> Seats { get; set; }
 
         [Required]
-        public Payment ChosenPayment { get; set; } 
+        public PaymentMethod ChosenPayment { get; set; }
+
+        public Customer? Customer { get; set; }
+
+        public int CustomerId { get; set; }
+
+        public int ShowingId { get; set; }
+        public Showing? Showing;
 
         public Reservation() { }
 
-        public Reservation(int reservationId, DateTime reservationTime, double price, List<Seat> seats, Payment chosenPayment)
+        public Reservation(int reservationId, DateTime reservationTime, double price, List<Seat> seats, PaymentMethod chosenPayment)
         {
             ReservationId = reservationId;
             ReservationTime = reservationTime;

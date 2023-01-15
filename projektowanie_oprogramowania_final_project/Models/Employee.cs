@@ -14,6 +14,10 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public Position Role { get; set; }
 
+        public int CinemaId { get; set; }
+
+        public Cinema? Cinema { get; set; }
+
         public Employee() { }
 
         public Employee(Position role, int id, string name, string surname, string email, string password, string phoneNumber = null)

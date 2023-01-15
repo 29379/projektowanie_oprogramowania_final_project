@@ -1,0 +1,48 @@
+﻿@page
+@model projektowanie_oprogramowania_final_project.Pages.Cinemas.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cinema[0].Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cinema[0].Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cinema[0].ZipCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Cinema) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CinemaId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CinemaId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CinemaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

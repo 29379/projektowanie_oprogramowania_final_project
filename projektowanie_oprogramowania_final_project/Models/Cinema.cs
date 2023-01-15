@@ -1,58 +1,36 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace projektowanie_oprogramowania_final_project.Models
 {
-    public class InstitutionAddress //  'Structs are not a supported Entity Framework type', więc zmieniłem na pomniejszą klasę
-    {
-        [Key]
-        public int Id { get; set; }
-        
-        [Required]
-        public string Street { get; set; }
-
-        [Required]
-        public int Number { get; set; }
-        
-        [Required]
-        public string ZipCode { get; set; }
-
-        public InstitutionAddress() { }
-
-        public InstitutionAddress(string street, int number, string zipCode)
-        {
-            Street = street;
-            Number = number;
-            ZipCode = zipCode;
-        }
-
-        public override string ToString() => base.ToString();
-    }
-
     public class Cinema
     {
         [Key]
         public int CinemaId { get; set; }
 
         [Required]
-        public InstitutionAddress Address { get; set; }
+        public string Street { get; set; }
 
         [Required]
-        public List<Room> ScreeningRooms { get; set; }
+        public int Number { get; set; }
 
         [Required]
-        public List<Employee> Employees { get; set; }
+        public string ZipCode { get; set; }
 
-        [Required]
-        public List<Showing> Showings { get; set; }
+        public ICollection<Room> ScreeningRooms { get; set; }
+
+        public ICollection<Employee> Employees { get; set; }
+
+        public ICollection<Showing> Showings { get; set; }
 
         public Cinema() { }
 
-        public Cinema(int cinemaId, InstitutionAddress address, List<Room> screeningRooms, List<Employee> employees, List<Showing> showings)
+        public Cinema(int cinemaId, string street, int number, string zipCode, ICollection<Room> screeningRooms, ICollection<Employee> employees, ICollection<Showing> showings)
         {
             CinemaId = cinemaId;
-            Address = address;
+            Street = street;
+            Number = number;
+            ZipCode = zipCode;
             ScreeningRooms = screeningRooms;
             Employees = employees;
             Showings = showings;

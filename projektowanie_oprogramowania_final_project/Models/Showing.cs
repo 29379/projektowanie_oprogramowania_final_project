@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 namespace projektowanie_oprogramowania_final_project.Models
 {
-    public enum LanguageVersion
-    {
-        dubbing,
-        subtitles
-    }
-
-    public enum TechnologyVersion
-    {
-        _2D,
-        _3D
-    }
-
     public class Showing
     {
+        public enum LanguageVersion
+        {
+            dubbing,
+            subtitles
+        }
+
+        public enum TechnologyVersion
+        {
+            _2D,
+            _3D
+        }
+
         [Key]
         public int ShowingId { get; set; }
 
@@ -37,8 +37,8 @@ namespace projektowanie_oprogramowania_final_project.Models
         /* Jeśli byśmy chcieli się dowiedzieć czy miejsce wolne dla
             danego seansu, to loopowało by się po jego rezerwacjach i tam sprawdzało
             które miejsca są wolne a które zajęte.  */
-        [Required]
-        public List<Reservation> Reservations { get; set; }
+        
+        public ICollection<Reservation> Reservations { get; set; }
 
         [Required]
         public Film ShowedFilm { get; set; }
@@ -48,17 +48,8 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Range(0.0, Double.MaxValue, ErrorMessage = "The value has to be bigger than 0")]
         public double Price { get; set; }
 
-        public Showing() { }
-        public Showing(int showingId, DateTime showtime, Room screeningRoom, LanguageVersion language, TechnologyVersion technology, List<Reservation> reservations, Film showedFilm, double price)
-        {
-            ShowingId = showingId;
-            Showtime = showtime;
-            ScreeningRoom = screeningRoom;
-            Language = language;
-            Technology = technology;
-            Reservations = reservations;
-            ShowedFilm = showedFilm;
-            Price = price;
-        }
+        public int? CinemaId { get; set; }
+
+        public Cinema? Cinema { get; set; }
     }
 }

@@ -6,12 +6,11 @@ namespace projektowanie_oprogramowania_final_project.Models
 {
     public class Customer : User
     {
-        [Required]
-        public List<Reservation> Reservations { get; set; }
-
+        public ICollection<Reservation> Reservations { get; set; }
+        
         public Customer() { }
 
-        public Customer(List<Reservation> reservations, int id, string name, string surname, string email, string password, string phoneNumber = null)
+        public Customer(ICollection<Reservation> reservations, int id, string name, string surname, string email, string password, string phoneNumber = null)
         {
             Reservations = reservations;
             Name = name;

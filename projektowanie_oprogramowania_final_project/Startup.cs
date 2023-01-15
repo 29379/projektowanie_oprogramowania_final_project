@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Routing;
 
 namespace projektowanie_oprogramowania_final_project
 {
@@ -36,9 +37,16 @@ namespace projektowanie_oprogramowania_final_project
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
              */
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
+            services.AddRazorPages();
             services.AddDbContextPool<CinemaDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CinemaDb")));
+            services.Configure<RouteOptions>(options =>
+            {
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
+                options.AppendTrailingSlash = true;
+            });
             /*
              services.AddAuthorization(options =>
             {
@@ -70,11 +78,20 @@ namespace projektowanie_oprogramowania_final_project
             //  app.UseAuthentication();
             app.UseAuthorization();
 
+            var cultures = new[] { "en", "fr", "es" };
+            var localisationOptions = new RequestLocalizationOptions()
+                .SetDefaultCulture("en")
+                .AddSupportedCultures(cultures)
+                .AddSupportedUICultures(cultures);
+            app.UseRequestLocalization(localisationOptions);
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //name: "default",
+                //pattern: "{controller=Home}/{action=Index}/{id?}");
+                //});
+                endpoints.MapRazorPages();
             });
         }
     }

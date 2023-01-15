@@ -26,12 +26,18 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AddressId")
+                    b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.HasKey("CinemaId");
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("AddressId");
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CinemaId");
 
                     b.ToTable("Cinemas");
                 });
@@ -50,6 +56,9 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FilePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
@@ -65,47 +74,6 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.ToTable("Films");
                 });
 
-            modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.InstitutionAddress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("InstitutionAddress");
-                });
-
-            modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Payment", b =>
-                {
-                    b.Property<int>("PaymentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Method")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PaymentTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("PaymentId");
-
-                    b.ToTable("Payments");
-                });
-
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Reservation", b =>
                 {
                     b.Property<int>("ReservationId")
@@ -113,10 +81,10 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ChosenPaymentPaymentId")
+                    b.Property<int>("ChosenPayment")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CustomerUserId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
@@ -125,14 +93,12 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Property<DateTime>("ReservationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ShowingId")
+                    b.Property<int>("ShowingId")
                         .HasColumnType("int");
 
                     b.HasKey("ReservationId");
 
-                    b.HasIndex("ChosenPaymentPaymentId");
-
-                    b.HasIndex("CustomerUserId");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ShowingId");
 
@@ -169,7 +135,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Property<int?>("ReservationId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RoomId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.Property<int>("Row")
@@ -273,7 +239,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                 {
                     b.HasBaseType("projektowanie_oprogramowania_final_project.Models.User");
 
-                    b.Property<int?>("CinemaId")
+                    b.Property<int>("CinemaId")
                         .HasColumnType("int");
 
                     b.Property<int>("Role")
@@ -284,37 +250,30 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.HasDiscriminator().HasValue("Employee");
                 });
 
-            modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Cinema", b =>
-                {
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.InstitutionAddress", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
-                });
-
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Reservation", b =>
                 {
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Payment", "ChosenPayment")
-                        .WithMany()
-                        .HasForeignKey("ChosenPaymentPaymentId");
-
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Customer", null)
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Customer", "Customer")
                         .WithMany("Reservations")
-                        .HasForeignKey("CustomerUserId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Showing", null)
                         .WithMany("Reservations")
-                        .HasForeignKey("ShowingId");
+                        .HasForeignKey("ShowingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("ChosenPayment");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Room", b =>
                 {
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Cinema", null)
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Cinema", "Cinema")
                         .WithMany("ScreeningRooms")
                         .HasForeignKey("CinemaId");
+
+                    b.Navigation("Cinema");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Seat", b =>
@@ -323,16 +282,21 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .WithMany("Seats")
                         .HasForeignKey("ReservationId");
 
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Room", null)
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Room", "Room")
                         .WithMany("Seats")
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Showing", b =>
                 {
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Cinema", null)
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Cinema", "Cinema")
                         .WithMany("Showings")
-                        .HasForeignKey("CinemaId");
+                        .HasForeignKey("CinemaId")
+                        .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Room", "ScreeningRoom")
                         .WithMany()
@@ -342,6 +306,8 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .WithMany()
                         .HasForeignKey("ShowedFilmFilmId");
 
+                    b.Navigation("Cinema");
+
                     b.Navigation("ScreeningRoom");
 
                     b.Navigation("ShowedFilm");
@@ -349,9 +315,13 @@ namespace projektowanie_oprogramowania_final_project.Migrations
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Employee", b =>
                 {
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Cinema", null)
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Cinema", "Cinema")
                         .WithMany("Employees")
-                        .HasForeignKey("CinemaId");
+                        .HasForeignKey("CinemaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cinema");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Cinema", b =>

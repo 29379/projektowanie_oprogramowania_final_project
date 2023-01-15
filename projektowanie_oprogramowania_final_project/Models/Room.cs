@@ -12,12 +12,15 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public int RoomNumber { get; set; }
 
-        [Required]
-        public List<Seat> Seats { get; set; }
+        public int? CinemaId { get; set; }
+
+        public Cinema? Cinema { get; set; }
+
+        public ICollection<Seat> Seats { get; set; }
 
         public Room() { }
 
-        public Room(int roomId, int roomNumber, List<Seat> seats)
+        public Room(int roomId, int roomNumber, ICollection<Seat> seats)
         {
             RoomId = roomId;
             RoomNumber = roomNumber;
