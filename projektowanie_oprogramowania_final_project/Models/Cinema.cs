@@ -19,20 +19,17 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         public ICollection<Room> ScreeningRooms { get; set; }
 
-        public ICollection<Employee> Employees { get; set; }
-
         public ICollection<Showing> Showings { get; set; }
 
         public Cinema() { }
 
-        public Cinema(int cinemaId, string street, int number, string zipCode, ICollection<Room> screeningRooms, ICollection<Employee> employees, ICollection<Showing> showings)
+        public Cinema(int cinemaId, string street, int number, string zipCode, ICollection<Room> screeningRooms, ICollection<Showing> showings)
         {
             CinemaId = cinemaId;
             Street = street;
             Number = number;
             ZipCode = zipCode;
             ScreeningRooms = screeningRooms;
-            Employees = employees;
             Showings = showings;
         }
     }

@@ -4,20 +4,21 @@ using System.Collections.Generic;
 
 namespace projektowanie_oprogramowania_final_project.Models
 {
+
+    public enum LanguageVersion
+    {
+        dubbing,
+        subtitles
+    }
+
+    public enum TechnologyVersion
+    {
+        _2D,
+        _3D
+    }
+
     public class Showing
     {
-        public enum LanguageVersion
-        {
-            dubbing,
-            subtitles
-        }
-
-        public enum TechnologyVersion
-        {
-            _2D,
-            _3D
-        }
-
         [Key]
         public int ShowingId { get; set; }
 

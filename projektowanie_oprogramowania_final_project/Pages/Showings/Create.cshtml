@@ -18,16 +18,23 @@
                 <input asp-for="Showing.Showtime" class="form-control" />
                 <span asp-validation-for="Showing.Showtime" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Showing.Language" class="control-label"></label>
-                <select asp-for="Showing.Language" class="form-control"></select>
+                <select asp-for="Showing.Language" class="custom-select" asp-items="Html.GetEnumSelectList<projektowanie_oprogramowania_final_project.Models.LanguageVersion>()">
+                    <option value="Please select"></option>
+                </select>
                 <span asp-validation-for="Showing.Language" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Showing.Technology" class="control-label"></label>
-                <select asp-for="Showing.Technology" class="form-control"></select>
+                <select asp-for="Showing.Technology" class="custom-select" asp-items="Html.GetEnumSelectList<projektowanie_oprogramowania_final_project.Models.TechnologyVersion>()">
+                    <option value="Please select"></option>
+                </select>
                 <span asp-validation-for="Showing.Technology" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Showing.Price" class="control-label"></label>
                 <input asp-for="Showing.Price" class="form-control" />

@@ -1,18 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Routing;
+using projektowanie_oprogramowania_final_project.Data;
 
 namespace projektowanie_oprogramowania_final_project
 {
@@ -28,37 +22,37 @@ namespace projektowanie_oprogramowania_final_project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            /*
-             services.AddControllersWithViews(config =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                     .RequireAuthenticatedUser()
-                     .Build();
-                config.Filters.Add(new AuthorizeFilter(policy));
-            });
-             */
-            //services.AddControllersWithViews();
+            services.AddControllersWithViews();
             services.AddRazorPages();
+
             services.AddDbContextPool<CinemaDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CinemaDb")));
+           
             services.Configure<RouteOptions>(options =>
             {
                 options.LowercaseUrls = true;
                 options.LowercaseQueryStrings = true;
                 options.AppendTrailingSlash = true;
             });
-            /*
-             services.AddAuthorization(options =>
+
+            services.AddDefaultIdentity<IdentityUser>(options => 
+                options.SignIn.RequireConfirmedAccount = false)
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<CinemaDbContext>();
+
+            services.AddAuthorization(options =>
             {
-                options.FallbackPolicy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
+                options.AddPolicy("NoAdmin", policy =>
+                {
+                    policy.RequireAssertion(context =>
+                        !context.User.IsInRole("Admin"));
+                });
             });
-             */
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -75,7 +69,7 @@ namespace projektowanie_oprogramowania_final_project
 
             app.UseRouting();
 
-            //  app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             var cultures = new[] { "en", "fr", "es" };
@@ -85,12 +79,13 @@ namespace projektowanie_oprogramowania_final_project
                 .AddSupportedUICultures(cultures);
             app.UseRequestLocalization(localisationOptions);
 
+            IdentityInitializer.SeedData(userManager, roleManager);
+
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllerRoute(
-                //name: "default",
-                //pattern: "{controller=Home}/{action=Index}/{id?}");
-                //});
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

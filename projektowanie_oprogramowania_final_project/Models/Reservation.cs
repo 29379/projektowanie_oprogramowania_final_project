@@ -29,10 +29,6 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public PaymentMethod ChosenPayment { get; set; }
 
-        public Customer? Customer { get; set; }
-
-        public int CustomerId { get; set; }
-
         public int ShowingId { get; set; }
         public Showing? Showing;
 

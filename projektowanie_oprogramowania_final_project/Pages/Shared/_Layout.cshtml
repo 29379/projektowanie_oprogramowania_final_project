@@ -39,17 +39,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Seats/Index">Seats</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Users/Index">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Employees/Index">Employee</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Index">Customer</a>
-                        </li>
                     </ul>
                 </div>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                </div>
+
             </div>
         </nav>
     </header>
@@ -61,7 +57,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - lab12 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2023 - RetroKino - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
