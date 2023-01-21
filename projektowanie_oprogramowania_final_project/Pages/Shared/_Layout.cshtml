@@ -22,23 +22,26 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Cinemas/Index">Cinemas</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Showings/Index">Showings</a>
                         </li>
                         <li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-page="/Films/Index">Films</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Films/Index">Films</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Rooms/Index">Rooms</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Reservations/Index">Reservations</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Seats/Index">Seats</a>
-                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Cinemas/Index">Cinemas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Rooms/Index">Rooms</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Seats/Index">Seats</a>
+                            </li>
+                        }
                     </ul>
                 </div>
 

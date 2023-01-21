@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Data;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using projektowanie_oprogramowania_final_project.Models;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Cinemas
 {
+    [Authorize(Roles = "Admin, Employee")]
     public class CreateModel : PageModel
     {
         private readonly CinemaDbContext _context;

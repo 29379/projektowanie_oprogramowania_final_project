@@ -8,9 +8,11 @@ namespace projektowanie_oprogramowania_final_project.Models
         public int SeatId { get; set; }
 
         [Required]
+        [Range(1, int.MaxValue)]
         public int Row { get; set; }
 
         [Required]
+        [Range(1, int.MaxValue)]
         public int SeatNumber { get; set; }
 
         public Room? Room { get; set; }

@@ -35,7 +35,7 @@
 @foreach (var item in Model.Film) {
         <tr>
             <td>
-                <img class="img-thumbnail" src="@Html.DisplayFor(modelItem => item.Image)" />
+                <img class="img-thumbnail" src="@Html.DisplayFor(modelItem => item.Image)" id="thumbnail" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -50,9 +50,12 @@
                 @Html.DisplayFor(modelItem => item.RunningTime)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.FilmId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.FilmId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.FilmId">Delete</a>
+                <a asp-page="./Details" asp-route-id="@item.FilmId">Details</a>
+                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.FilmId">Edit</a> 
+                    <a asp-page="./Delete" asp-route-id="@item.FilmId">Delete</a>
+                }
             </td>
         </tr>
 }

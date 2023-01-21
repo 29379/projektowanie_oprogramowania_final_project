@@ -18,7 +18,7 @@
                 <input asp-for="Showing.Showtime" class="form-control" />
                 <span asp-validation-for="Showing.Showtime" class="text-danger"></span>
             </div>
-
+            
             <div class="form-group">
                 <label asp-for="Showing.Language" class="control-label"></label>
                 <select asp-for="Showing.Language" class="custom-select" asp-items="Html.GetEnumSelectList<projektowanie_oprogramowania_final_project.Models.LanguageVersion>()">
@@ -44,6 +44,13 @@
                 <label asp-for="Showing.CinemaId" class="control-label"></label>
                 <select asp-for="Showing.CinemaId" class ="form-control" asp-items="ViewBag.CinemaId"></select>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Showing.FilmId" class="control-label"></label>
+                <select asp-for="Showing.FilmId" class="form-control" asp-items="ViewBag.FilmId"></select>
+            </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

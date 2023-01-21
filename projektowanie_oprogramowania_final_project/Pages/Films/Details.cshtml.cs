@@ -12,9 +12,9 @@ namespace projektowanie_oprogramowania_final_project.Pages.Films
 {
     public class DetailsModel : PageModel
     {
-        private readonly projektowanie_oprogramowania_final_project.CinemaDbContext _context;
+        private readonly CinemaDbContext _context;
 
-        public DetailsModel(projektowanie_oprogramowania_final_project.CinemaDbContext context)
+        public DetailsModel(CinemaDbContext context)
         {
             _context = context;
         }

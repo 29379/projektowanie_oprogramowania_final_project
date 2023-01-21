@@ -287,9 +287,6 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<DateTime>("ReservationTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("ShowingId")
                         .HasColumnType("int");
 

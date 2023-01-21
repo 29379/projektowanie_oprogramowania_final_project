@@ -42,10 +42,10 @@ namespace projektowanie_oprogramowania_final_project
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("NoAdmin", policy =>
+                options.AddPolicy("UserOnly", policy =>
                 {
                     policy.RequireAssertion(context =>
-                        !context.User.IsInRole("Admin"));
+                        (!context.User.IsInRole("Admin") && (!context.User.IsInRole("Employee"))));
                 });
             });
 

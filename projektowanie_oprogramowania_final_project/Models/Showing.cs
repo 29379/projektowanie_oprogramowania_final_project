@@ -42,7 +42,10 @@ namespace projektowanie_oprogramowania_final_project.Models
         public ICollection<Reservation> Reservations { get; set; }
 
         [Required]
-        public Film ShowedFilm { get; set; }
+        public int? FilmId;
+
+        [Required]
+        public Film? ShowedFilm { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]

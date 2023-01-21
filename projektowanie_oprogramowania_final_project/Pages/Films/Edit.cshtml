@@ -34,6 +34,13 @@
                 <input asp-for="Film.RunningTime" class="form-control" />
                 <span asp-validation-for="Film.RunningTime" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label hidden asp-for="Film.Image" class="control-label"></label>
+                <input hidden asp-for="Film.FilePath" class="form-control" />
+            </div>
+            <img src="@Html.DisplayFor(model => model.Film.Image)" />
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

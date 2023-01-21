@@ -12,6 +12,7 @@ namespace projektowanie_oprogramowania_final_project.Models
         public string Street { get; set; }
 
         [Required]
+        [Range(1, int.MaxValue)]
         public int Number { get; set; }
 
         [Required]
@@ -31,6 +32,12 @@ namespace projektowanie_oprogramowania_final_project.Models
             ZipCode = zipCode;
             ScreeningRooms = screeningRooms;
             Showings = showings;
+        }
+
+        public override string ToString()
+        {
+            string output = Street + " " + Number + ", " + ZipCode;
+            return output;
         }
     }
 }

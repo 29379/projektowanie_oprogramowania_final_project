@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.RoomNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cinema.CinemaId)
+                @item.Cinema.ToString()
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.RoomId">Edit</a> |
