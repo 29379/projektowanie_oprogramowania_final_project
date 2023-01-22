@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using projektowanie_oprogramowania_final_project;
 using projektowanie_oprogramowania_final_project.Models;
 
@@ -57,21 +58,8 @@ namespace projektowanie_oprogramowania_final_project.Pages.Films
 
             if (Film != null)
             {
-                if (Film.FilePath != null)
-                {
-                    string folder = Path.Combine(_hostingEnvironment.WebRootPath, "upload");
-                    string filePath = Path.Combine(folder, Film.FilePath);
-                    Film.FilePath = null;
-                    if (System.IO.File.Exists(filePath))
-                    {
-                        FileInfo fi = new(filePath);
-                        if (fi != null)
-                        {
-                            System.IO.File.Delete(filePath);
-                            fi.Delete();
-                        }
-                    }
-                }
+                if(Film.ImagePath != null)
+                    System.IO.File.Delete(Path.Combine(_hostingEnvironment.WebRootPath, Film.ImagePath));
                 _context.Films.Remove(Film);
                 await _context.SaveChangesAsync();
             }

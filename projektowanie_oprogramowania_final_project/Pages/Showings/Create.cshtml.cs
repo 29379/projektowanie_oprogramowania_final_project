@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using projektowanie_oprogramowania_final_project;
 using projektowanie_oprogramowania_final_project.Models;
+using System.Text.Json;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Showings
 {
@@ -26,6 +28,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
         {
             ViewData["CinemaId"] = new SelectList(_context.Cinemas, "CinemaId", "Street");
             ViewData["FilmId"] = new SelectList(_context.Films, "FilmId", "Title");
+            ViewData["Rooms"] = new SelectList(_context.Rooms, "RoomId", "RoomNumber");
             return Page();
         }
 

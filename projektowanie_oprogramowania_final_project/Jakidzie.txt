@@ -1,17 +1,11 @@
 ﻿Większość jest ok, ale WCIĄŻ są problemy z modelami i powoli tracę pomysły co właściwie się tam dzieje, że to nie działa.
 
-1.	Nie działają zdjęcia przy filmach. WYDAJE MI SIĘ, że jest zrobione dokładnie tak samo jak miałem na lab10/11/12/13 z .NET,
-	a jednak uparcie nie dodają się obrazki, więc ewidentnie nie jest - z jakiegoś powodu. Jedyny plus, to że działa routing
-	do images/no-image.jpg, ale no coś tam trzeba dać.
-2.	Nie działa tworzenie instancji Showing - wygląda mi na to, jakby problem leżał w łączeniu z modelem Cinema, ale nie wiem tak naprawdę
-3.	Nie działa coś z instancjami Room'a - CinemaId łączy dobrze jak wypełni się formularz na stronie przy tworzeniu elementu, ale
-	'Cinema? Cinema' pozostaje NULL'em - nie może tak zostać, raz że nie da się przy tym nic ładnie wyświetlić na stronie, a dwa - w zasadzie
-	co najważniejsze - no rozjedzie się przy tym wszystko w bazie
-4.	Nie działa tworzenie instancji Reservation - nie wiem też jak zrobić, żeby można było do woli dodawać Seat'ów do elementu - ba, na tą
+1.	Nie działa tworzenie instancji Showing - wygląda mi na to, jakby problem leżał w łączeniu z modelem Cinema, ale nie wiem tak naprawdę
+2.	Nie działa tworzenie instancji Reservation - nie wiem też jak zrobić, żeby można było do woli dodawać Seat'ów do elementu - ba, na tą
 	chwilę nie da się dodać nawet jednego - ale no w ostatecznym rozrachunku trzeba znaleźć jakieś rozwiązanie żeby dodawać jedno po drugim bez
 	hardkodowania dodawania X siedzeń bo to bez sensu.
-5.	Nie ma żadnych stron 'naszych', jest tylko CRUD, bo no wciąż nie śmiga
-6.	Jak będzie - w porównaniu do ShopControllera z lab11/12/13 - działało robienie zamówień, tak jak on to mówił, z zapisywaniem wszystkiego do bazy?
+3.	Nie ma żadnych stron 'naszych', jest tylko CRUD, bo no wciąż nie śmiga
+4.	Jak będzie - w porównaniu do ShopControllera z lab11/12/13 - działało robienie zamówień, tak jak on to mówił, z zapisywaniem wszystkiego do bazy?
 	To co mamy w Reservation wystarczy? Chyba nie? Nie wiem
 
 ------------------------------------------------------------------------------------------------------------------------------------------------

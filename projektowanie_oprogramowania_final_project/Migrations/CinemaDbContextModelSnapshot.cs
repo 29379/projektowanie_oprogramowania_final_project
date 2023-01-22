@@ -256,7 +256,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FilePath")
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReleaseDate")
@@ -287,7 +287,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("ShowingId")
+                    b.Property<int?>("ShowingId")
                         .HasColumnType("int");
 
                     b.HasKey("ReservationId");
@@ -361,7 +361,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("ScreeningRoomRoomId")
+                    b.Property<int?>("RoomId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ShowedFilmFilmId")
@@ -377,7 +377,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
 
                     b.HasIndex("CinemaId");
 
-                    b.HasIndex("ScreeningRoomRoomId");
+                    b.HasIndex("RoomId");
 
                     b.HasIndex("ShowedFilmFilmId");
 
@@ -439,9 +439,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                 {
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Showing", null)
                         .WithMany("Reservations")
-                        .HasForeignKey("ShowingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ShowingId");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Room", b =>
@@ -476,11 +474,11 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Room", "ScreeningRoom")
-                        .WithMany()
-                        .HasForeignKey("ScreeningRoomRoomId");
+                        .WithMany("Showings")
+                        .HasForeignKey("RoomId");
 
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Film", "ShowedFilm")
-                        .WithMany()
+                        .WithMany("Showings")
                         .HasForeignKey("ShowedFilmFilmId");
 
                     b.Navigation("Cinema");
@@ -497,6 +495,11 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Navigation("Showings");
                 });
 
+            modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Film", b =>
+                {
+                    b.Navigation("Showings");
+                });
+
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Reservation", b =>
                 {
                     b.Navigation("Seats");
@@ -505,6 +508,8 @@ namespace projektowanie_oprogramowania_final_project.Migrations
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Room", b =>
                 {
                     b.Navigation("Seats");
+
+                    b.Navigation("Showings");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Showing", b =>

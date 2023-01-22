@@ -26,8 +26,9 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public DateTime Showtime { get; set; }
 
-        [Required]
-        public Room ScreeningRoom { get; set; }
+        public int? RoomId { get; set;  }
+
+        public Room? ScreeningRoom { get; set; }
 
         [Required]
         public LanguageVersion Language { get; set; }
@@ -41,10 +42,10 @@ namespace projektowanie_oprogramowania_final_project.Models
         
         public ICollection<Reservation> Reservations { get; set; }
 
-        [Required]
+        
         public int? FilmId;
 
-        [Required]
+        
         public Film? ShowedFilm { get; set; }
 
         [Required]

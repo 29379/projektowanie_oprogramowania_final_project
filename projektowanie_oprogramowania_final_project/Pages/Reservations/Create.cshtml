@@ -14,6 +14,13 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Reservation.ShowingId" class="control-label"></label>
+                <select asp-for="Reservation.ShowingId" class ="form-control" asp-items="ViewBag.ShowingId"></select>
+            </div>
+
+            <p>How to add seats?</p>
+
+            <div class="form-group">
                 <label asp-for="Reservation.Price" class="control-label"></label>
                 <input asp-for="Reservation.Price" class="form-control" />
                 <span asp-validation-for="Reservation.Price" class="text-danger"></span>
@@ -25,11 +32,8 @@
                </select>
                 <span asp-validation-for="Reservation.ChosenPayment" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Reservation.ShowingId" class="control-label"></label>
-                <select asp-for="Reservation.ShowingId" class ="form-control" asp-items="ViewBag.ShowingId"></select>
-            </div>
-            <p>How to add seats?</p>
+            
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

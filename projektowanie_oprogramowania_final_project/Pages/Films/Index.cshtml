@@ -35,7 +35,14 @@
 @foreach (var item in Model.Film) {
         <tr>
             <td>
-                <img class="img-thumbnail" src="@Html.DisplayFor(modelItem => item.Image)" id="thumbnail" />
+                    @if (item.ImagePath == null)
+                    {
+                                        <img src="/images/no-image.jpg" width=50 height=50/>
+                    }
+                    else
+                    {
+                                        <img src="/@item.ImagePath" width=50 height=80/>
+                    }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)

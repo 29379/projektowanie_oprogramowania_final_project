@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace projektowanie_oprogramowania_final_project.Models
 {
@@ -27,13 +28,11 @@ namespace projektowanie_oprogramowania_final_project.Models
         //  - - - - - - - - - - - - - - - - - - - - - 
         //  - - - - - - - - - - - - - - - - - - - - - 
 
-        public string? FilePath { get; set; } = null;
+        public String ImagePath { get; set; }
 
         [NotMapped]
-        public string Image =>
-            FilePath is { } path ? $"/upload/{path}" : "/images/no-image.jpg";
+        public IFormFile Image { get; set; }
 
-        [NotMapped]
-        public IFormFile? FormFile { get; set; } = null;
+        public ICollection<Showing> Showings { get; set; }
     }
 }

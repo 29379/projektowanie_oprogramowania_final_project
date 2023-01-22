@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,14 +17,18 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
     public class CreateModel : PageModel
     {
         private readonly CinemaDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public CreateModel(CinemaDbContext context)
+        public CreateModel(CinemaDbContext context, IWebHostEnvironment hostEnvironment)
         {
+            
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
         public IActionResult OnGet()
         {
+            ViewData["ShowingId"] = new SelectList(_context.Showings, "ShowingId", "Showtime");
             return Page();
         }
 

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using projektowanie_oprogramowania_final_project.Models;
 
+
 namespace projektowanie_oprogramowania_final_project.Pages.Films
 {
     [Authorize(Roles = "Admin, Employee")]
@@ -39,16 +40,18 @@ namespace projektowanie_oprogramowania_final_project.Pages.Films
                 return Page();
             }
 
-            if (Film.FormFile != null)
+            if (Film.Image != null)
             {
-                string folder = Path.Combine(_hostingEnvironment.WebRootPath, "upload");
-                string fileName = Guid.NewGuid().ToString() + "_" + Film.FormFile.FileName;
-                string filePath = Path.Combine(folder, fileName);
-                FileStream p = new(filePath, FileMode.Create);
-                Film.FormFile.CopyTo(p);
-                p.Dispose();
-                Film.FilePath = filePath;
+                string fileName = Guid.NewGuid().ToString() + "_" + Film.Image.FileName + ".jpg";
+                string uploadFolder = Path.Combine(this._hostingEnvironment.WebRootPath, "upload");
+                string imgPath = Path.Combine(uploadFolder, fileName);
+                FileStream fs = new FileStream(imgPath, FileMode.CreateNew);
+                Film.Image.CopyTo(fs);
+                fs.Close();
+                Film.ImagePath = Path.Combine("upload", fileName);
+                
             }
+            //Film.ImagePath = "beatka";
 
             _context.Films.Add(Film);
             await _context.SaveChangesAsync();

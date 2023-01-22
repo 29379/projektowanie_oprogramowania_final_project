@@ -37,7 +37,15 @@
 
             <div class="form-group">
                 <label hidden asp-for="Film.Image" class="control-label"></label>
-                <input hidden asp-for="Film.FilePath" class="form-control" />
+                        @if (Model.Film.ImagePath == null)
+                        {
+                                <img src="/images/no-image.jpg"/>
+                        }
+                        else
+                        {
+                                    <img src="/@Model.Film.ImagePath"/>
+                        }
+        </dd>    
             </div>
             <img src="@Html.DisplayFor(model => model.Film.Image)" />
 

@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Showing[0].ShowedFilm.Title)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Showing[0].Showtime)
             </th>
             <th>
@@ -34,6 +37,9 @@
     <tbody>
 @foreach (var item in Model.Showing) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowedFilm.Title)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Showtime)
             </td>

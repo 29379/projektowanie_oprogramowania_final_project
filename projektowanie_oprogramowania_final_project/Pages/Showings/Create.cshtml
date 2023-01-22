@@ -14,6 +14,18 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Showing.CinemaId" class="control-label"></label>
+                <select asp-for="Showing.CinemaId" class ="form-control" asp-items="ViewBag.CinemaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Showing.ScreeningRoom" class="control-label"></label>
+                <select id="roomSelect" asp-for="Showing.ScreeningRoom" class="form-control" asp-items="ViewBag.Rooms"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Showing.FilmId" class="control-label"></label>
+                <select asp-for="Showing.FilmId" class="form-control" asp-items="ViewBag.FilmId"></select>
+            </div>
+            <div class="form-group">
                 <label asp-for="Showing.Showtime" class="control-label"></label>
                 <input asp-for="Showing.Showtime" class="form-control" />
                 <span asp-validation-for="Showing.Showtime" class="text-danger"></span>
@@ -41,17 +53,6 @@
                 <span asp-validation-for="Showing.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Showing.CinemaId" class="control-label"></label>
-                <select asp-for="Showing.CinemaId" class ="form-control" asp-items="ViewBag.CinemaId"></select>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Showing.FilmId" class="control-label"></label>
-                <select asp-for="Showing.FilmId" class="form-control" asp-items="ViewBag.FilmId"></select>
-            </div>
-
-
-            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -64,4 +65,15 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+        <script>
+            $("#CinemaId").change(function () {
+                $.get("/GetRoom", { id: $("#CinemaId").val() }, function (data) {
+                    $("#RoomId").empty();
+                    $.each(data, function (index, row) {
+                        $("#RoomId").append("<option value='" + row.RoomId + "'>" + row.RoomNumber + "</option>")
+                    });
+                });
+            })
+        </script>
 }

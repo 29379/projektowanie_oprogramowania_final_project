@@ -29,7 +29,9 @@
                 @Html.DisplayFor(modelItem => item.RoomNumber)
             </td>
             <td>
-                @item.Cinema.ToString()
+                @if(item.Cinema != null){
+                    @item.Cinema.ToString()
+                }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.RoomId">Edit</a> |

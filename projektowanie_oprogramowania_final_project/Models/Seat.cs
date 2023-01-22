@@ -19,6 +19,7 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         public int RoomId { get; set; }
 
+
         /*
          *         public Seat() { }
 

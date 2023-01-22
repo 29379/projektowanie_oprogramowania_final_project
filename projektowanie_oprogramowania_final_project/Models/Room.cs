@@ -21,6 +21,14 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         public ICollection<Seat> Seats { get; set; }
 
+        public ICollection<Showing> Showings { get; set; }
+
+        public override string ToString()
+        {
+            return RoomNumber.ToString() + ", "; //+ Cinema.ToString();
+        }
+
+        /*
         public Room() { }
 
         public Room(int roomId, int roomNumber, ICollection<Seat> seats)
@@ -29,8 +37,6 @@ namespace projektowanie_oprogramowania_final_project.Models
             RoomNumber = roomNumber;
             Seats = seats;
         }
-
-        
-
+        */
     }
 }
