@@ -23,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Room) {
+    @foreach (var item in Model.Room) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.RoomNumber)
@@ -39,6 +39,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.RoomId">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

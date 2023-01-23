@@ -608,6 +608,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\6cf1cf41-d7cb-40e7-868d-892fecafc222_barbie-fairytopia-movie-poster-2007-1020448965.jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\6cf1cf41-d7cb-40e7-868d-892fecafc222_barbie-fairytopia-movie-poster-2007-1020448965.jpg.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\6cf1cf41-d7cb-40e7-868d-892fecafc222_barbie-fairytopia-movie-poster-2007-1020448965.jpg.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\pulp-fiction-cover-i1288.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>projektowanie_oprogramowania_final_project</SourceId>
