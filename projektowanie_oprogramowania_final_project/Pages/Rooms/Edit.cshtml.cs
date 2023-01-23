@@ -40,7 +40,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Rooms
             {
                 return NotFound();
             }
-            ViewData["CinemaId"] = new SelectList(_context.Cinemas, "CinemaId", "Street");
+            ViewData["CinemaId"] = new SelectList(_context.Cinemas, "CinemaId", null);
             return Page();
         }
 

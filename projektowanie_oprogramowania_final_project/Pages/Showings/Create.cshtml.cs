@@ -11,6 +11,7 @@ using projektowanie_oprogramowania_final_project;
 using projektowanie_oprogramowania_final_project.Models;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Showings
 {
@@ -26,9 +27,9 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
 
         public IActionResult OnGet()
         {
-            ViewData["CinemaId"] = new SelectList(_context.Cinemas, "CinemaId", "Street");
-            ViewData["FilmId"] = new SelectList(_context.Films, "FilmId", "Title");
-            ViewData["Rooms"] = new SelectList(_context.Rooms, "RoomId", "RoomNumber");
+            ViewData["CinemaId"] = new SelectList(_context.Cinemas, "CinemaId", null);
+            ViewData["FilmId"] = new SelectList(_context.Films, "FilmId", null);
+            ViewData["Rooms"] = new SelectList(_context.Rooms, "RoomId", null);
             return Page();
         }
 
@@ -36,7 +37,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
         public Showing Showing { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (!ModelState.IsValid)
             {

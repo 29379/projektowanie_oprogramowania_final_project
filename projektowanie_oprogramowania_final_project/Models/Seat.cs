@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace projektowanie_oprogramowania_final_project.Models
 {
@@ -15,20 +17,14 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Range(1, int.MaxValue)]
         public int SeatNumber { get; set; }
 
-        public Room? Room { get; set; }
+        public int? RoomId { get; set; }
 
-        public int RoomId { get; set; }
+        [ForeignKey(nameof(RoomId))]
+        public virtual Room Room { get; set; }
 
-
-        /*
-         *         public Seat() { }
-
-            public Seat(int seatId, int row, int seatNumber)
-            {
-                SeatId = seatId;
-                Row = row;
-                SeatNumber = seatNumber;
-            }
-         */
+        public override string ToString()
+        {
+            return "row: " + Row + ", seat: " + SeatNumber;
+        }
     }
 }

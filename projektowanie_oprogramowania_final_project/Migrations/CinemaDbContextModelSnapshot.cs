@@ -327,7 +327,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Property<int?>("ReservationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoomId")
+                    b.Property<int?>("RoomId")
                         .HasColumnType("int");
 
                     b.Property<int>("Row")
@@ -355,6 +355,9 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Property<int?>("CinemaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("FilmId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Language")
                         .HasColumnType("int");
 
@@ -362,9 +365,6 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .HasColumnType("float");
 
                     b.Property<int?>("RoomId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ShowedFilmFilmId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Showtime")
@@ -377,9 +377,9 @@ namespace projektowanie_oprogramowania_final_project.Migrations
 
                     b.HasIndex("CinemaId");
 
-                    b.HasIndex("RoomId");
+                    b.HasIndex("FilmId");
 
-                    b.HasIndex("ShowedFilmFilmId");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("Showings");
                 });
@@ -437,9 +437,11 @@ namespace projektowanie_oprogramowania_final_project.Migrations
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Reservation", b =>
                 {
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Showing", null)
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Showing", "Showing")
                         .WithMany("Reservations")
                         .HasForeignKey("ShowingId");
+
+                    b.Navigation("Showing");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Room", b =>
@@ -459,9 +461,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
 
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Room", "Room")
                         .WithMany("Seats")
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoomId");
 
                     b.Navigation("Room");
                 });
@@ -473,13 +473,13 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .HasForeignKey("CinemaId")
                         .OnDelete(DeleteBehavior.ClientCascade);
 
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Film", "ShowedFilm")
+                        .WithMany("Showings")
+                        .HasForeignKey("FilmId");
+
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Room", "ScreeningRoom")
                         .WithMany("Showings")
                         .HasForeignKey("RoomId");
-
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Film", "ShowedFilm")
-                        .WithMany("Showings")
-                        .HasForeignKey("ShowedFilmFilmId");
 
                     b.Navigation("Cinema");
 

@@ -25,14 +25,17 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public TimeSpan RunningTime { get; set; }
 
-        //  - - - - - - - - - - - - - - - - - - - - - 
-        //  - - - - - - - - - - - - - - - - - - - - - 
-
         public String ImagePath { get; set; }
 
         [NotMapped]
         public IFormFile Image { get; set; }
 
+        [InverseProperty(nameof(Showing.ShowedFilm))]
         public ICollection<Showing> Showings { get; set; }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

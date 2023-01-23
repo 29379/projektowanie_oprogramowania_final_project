@@ -10,6 +10,24 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form  method="get">
+    <div class="form-group">
+            <label>Cinema</label>
+            <select class="form-control" name="cinema_id">
+            @foreach (var cinema in ViewBag.Cinemas)
+            {
+                            <option value="@cinema.CinemaId">@cinema</option>
+            }
+            </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="OK" class="btn btn-primary" />
+    </div>
+
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -21,6 +39,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Seat[0].Room)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seat[0].Room.Cinema)
             </th>
             <th></th>
         </tr>
@@ -36,6 +57,9 @@
             </td>
             <td>
                 @item.Room.ToString()
+            </td>
+            <td>
+                @item.Room.Cinema.ToString()
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.SeatId">Edit</a> |

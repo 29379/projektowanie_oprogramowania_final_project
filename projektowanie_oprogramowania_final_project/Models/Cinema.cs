@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace projektowanie_oprogramowania_final_project.Models
 {
@@ -18,26 +19,15 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public string ZipCode { get; set; }
 
+        [InverseProperty(nameof(Room.Cinema))]
         public ICollection<Room> ScreeningRooms { get; set; }
 
+        [InverseProperty(nameof(Showing.Cinema))]
         public ICollection<Showing> Showings { get; set; }
-
-        public Cinema() { }
-
-        public Cinema(int cinemaId, string street, int number, string zipCode, ICollection<Room> screeningRooms, ICollection<Showing> showings)
-        {
-            CinemaId = cinemaId;
-            Street = street;
-            Number = number;
-            ZipCode = zipCode;
-            ScreeningRooms = screeningRooms;
-            Showings = showings;
-        }
 
         public override string ToString()
         {
-            string output = Street + " " + Number + ", " + ZipCode;
-            return output;
+            return Street + " " + Number + ", " + ZipCode;
         }
     }
 }

@@ -17,6 +17,7 @@
                 <label asp-for="Showing.CinemaId" class="control-label"></label>
                 <select asp-for="Showing.CinemaId" class ="form-control" asp-items="ViewBag.CinemaId"></select>
             </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Showing.ScreeningRoom" class="control-label"></label>
                 <select id="roomSelect" asp-for="Showing.ScreeningRoom" class="form-control" asp-items="ViewBag.Rooms"></select>

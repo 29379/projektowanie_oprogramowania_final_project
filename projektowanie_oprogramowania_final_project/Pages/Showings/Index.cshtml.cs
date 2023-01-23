@@ -21,10 +21,12 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
 
         public IList<Showing> Showing { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? id)
         {
+            ViewData["Cinemas"] = _context.Cinemas.ToList();
             Showing = await _context.Showings
-                .Include(s => s.Cinema).ToListAsync();
+                .Include(s => s.Cinema)
+                .Where(s => s.CinemaId == id).ToListAsync();
         }
     }
 }
