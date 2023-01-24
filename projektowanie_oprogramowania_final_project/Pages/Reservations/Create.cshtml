@@ -15,14 +15,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Reservation.ShowingId" class="control-label"></label>
-                <select asp-for="Reservation.ShowingId" class ="form-control" asp-items="ViewBag.ShowingId"></select>
+                <select asp-for="Reservation.ShowingId" id="ShowingId" class ="form-control" asp-items="ViewBag.ShowingId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Reservation.Seats" class="control-label"></label>
+                <select multiple asp-for="Reservation.Seats" id="Seats" class ="form-control" asp-items="ViewBag.SeatId"></select>
             </div>
 
             <p>How to add seats?</p>
 
             <div class="form-group">
                 <label asp-for="Reservation.Price" class="control-label"></label>
-                <input asp-for="Reservation.Price" class="form-control" />
+                <input readonly asp-for="Reservation.Price" id="Price" class="form-control" />
                 <span asp-validation-for="Reservation.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -47,4 +52,19 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script type="text/javascript">
+            $("#Seats").on("change", seatChanged);
+
+            function seatChanged() {
+                var t = this.value.length;
+                console.log(t);
+                var s_id = $("#ShowingId").val();
+                console.log(s_id)
+                $.get(`/reservations/create?handler=Price&showing_id=${s_id}&tickets=${t}`, function (price) {       
+                        console.log(price);
+                    $("#Price").val(price);
+                });
+            }
+        </script>
+
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using projektowanie_oprogramowania_final_project;
 using projektowanie_oprogramowania_final_project.Models;
 
@@ -28,7 +29,14 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
 
         public IActionResult OnGet(int? id)
         {
+            var room = _context.Showings
+                        .Include(s => s.Room)
+                        .Where(s => s.ShowingId == id)
+                        .Select(s => s.RoomId)
+                        .First();
+
             ViewData["ShowingId"] = new SelectList(_context.Showings.Where(s => s.ShowingId == id), "ShowingId", null);
+            ViewData["SeatId"] = new MultiSelectList(_context.Seats.Where(s => s.RoomId == room), "SeatId", null);
             return Page();
         }
 
@@ -48,5 +56,12 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
 
             return RedirectToPage("./Index");
         }
+
+        public IActionResult OnGetPrice(int showing_id, int tickets)
+        {
+            var price = _context.Showings.Where(s => s.ShowingId == showing_id).First().Price * tickets;
+            return new JsonResult(price);
+        }
+
     }
 }
