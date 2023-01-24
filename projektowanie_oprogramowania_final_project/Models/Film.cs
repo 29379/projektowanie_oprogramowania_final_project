@@ -30,7 +30,6 @@ namespace projektowanie_oprogramowania_final_project.Models
         [NotMapped]
         public IFormFile Image { get; set; }
 
-        [InverseProperty(nameof(Showing.ShowedFilm))]
         public ICollection<Showing> Showings { get; set; }
 
         public override string ToString()

@@ -15,13 +15,10 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         public int? CinemaId { get; set; }
 
-        [ForeignKey(nameof(CinemaId))]
-        public virtual Cinema Cinema { get; set; }
+        public Cinema Cinema { get; set; }
 
-        [InverseProperty(nameof(Seat.Room))]
         public ICollection<Seat> Seats { get; set; }
 
-        [InverseProperty(nameof(Showing.ScreeningRoom))]
         public ICollection<Showing> Showings { get; set; }
 
         public override string ToString()

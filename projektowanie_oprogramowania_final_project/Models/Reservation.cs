@@ -27,8 +27,7 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         public int? ShowingId { get; set; }
 
-        [ForeignKey(nameof(ShowingId))]
-        public virtual Showing Showing { get; set; }
+        public Showing Showing { get; set; }
 
     }
 }

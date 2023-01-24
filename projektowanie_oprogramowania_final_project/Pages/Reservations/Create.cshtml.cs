@@ -13,7 +13,7 @@ using projektowanie_oprogramowania_final_project.Models;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Reservations
 {
-    [Authorize(Roles = "Admin, Employee")]
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly CinemaDbContext _context;
@@ -26,9 +26,9 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
             _hostEnvironment = hostEnvironment;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int? id)
         {
-            ViewData["ShowingId"] = new SelectList(_context.Showings, "ShowingId", "Showtime");
+            ViewData["ShowingId"] = new SelectList(_context.Showings.Where(s => s.ShowingId == id), "ShowingId", null);
             return Page();
         }
 

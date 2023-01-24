@@ -19,10 +19,8 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public string ZipCode { get; set; }
 
-        [InverseProperty(nameof(Room.Cinema))]
         public ICollection<Room> ScreeningRooms { get; set; }
 
-        [InverseProperty(nameof(Showing.Cinema))]
         public ICollection<Showing> Showings { get; set; }
 
         public override string ToString()

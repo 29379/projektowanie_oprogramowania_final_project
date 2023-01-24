@@ -33,7 +33,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Showing[0].ShowedFilm.Title)
+                @Html.DisplayNameFor(model => model.Showing[0].Film)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Showing[0].Showtime)
@@ -50,6 +50,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Showing[0].Cinema)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Room)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -57,7 +60,7 @@
 @foreach (var item in Model.Showing) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ShowedFilm.Title)
+                @Html.DisplayFor(modelItem => item.Film)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Showtime)
@@ -72,7 +75,10 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cinema.Street)
+                @Html.DisplayFor(modelItem => item.Cinema)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room)
             </td>
             <td>
                 <a asp-page="./Details" asp-route-id="@item.ShowingId">Details</a>
@@ -80,6 +86,9 @@
                 {
                     <a asp-page="./Edit" asp-route-id="@item.ShowingId">Edit</a> 
                     <a asp-page="./Delete" asp-route-id="@item.ShowingId">Delete</a>
+                }
+                else if(User.Identity.IsAuthenticated){
+                    <a asp-page="../Reservations/Create" asp-route-id="@item.ShowingId">Buy ticket</a> 
                 }
             </td>
         </tr>

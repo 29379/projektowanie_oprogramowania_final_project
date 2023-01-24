@@ -1,6 +1,7 @@
 ﻿using projektowanie_oprogramowania_final_project.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace projektowanie_oprogramowania_final_project
 {
@@ -19,23 +20,63 @@ namespace projektowanie_oprogramowania_final_project
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Cinema>()
-                .HasMany(a => a.Showings)
-                .WithOne(c => c.Cinema)
-                .OnDelete(DeleteBehavior.ClientCascade)
-                .HasForeignKey(c => c.CinemaId);
+                .HasMany(c => c.ScreeningRooms)
+                .WithOne(r => r.Cinema);
+
+            modelBuilder.Entity<Cinema>()
+                .HasMany(c => c.Showings)
+                .WithOne(s => s.Cinema);
+
+            modelBuilder.Entity<Room>()
+                .HasMany(c => c.Showings)
+                .WithOne(s => s.Room);
+
+            modelBuilder.Entity<Room>()
+                .HasMany(c => c.Seats)
+                .WithOne(s => s.Room);
+
+            modelBuilder.Entity<Room>()
+                .HasOne(r => r.Cinema)
+                .WithMany(c => c.ScreeningRooms)
+                .HasForeignKey(r => r.CinemaId);
+
+            modelBuilder.Entity<Seat>()
+                .HasOne(s => s.Room)
+                .WithMany(r => r.Seats)
+                .HasForeignKey(s => s.RoomId);
+
+            modelBuilder.Entity<Film>()
+                .HasMany(c => c.Showings)
+                .WithOne(s => s.Film);
 
             modelBuilder.Entity<Showing>()
-                .HasOne(c => c.Cinema)
-                .WithMany(a => a.Showings)
-                .HasForeignKey(c => c.CinemaId);
+                .HasMany(s => s.Reservations)
+                .WithOne(r => r.Showing);
 
             modelBuilder.Entity<Showing>()
-                .Property(l => l.Language)
-                .HasConversion<int>();
+                .HasOne(s => s.Cinema)
+                .WithMany(c => c.Showings)
+                .HasForeignKey(s => s.CinemaId);
 
             modelBuilder.Entity<Showing>()
-                .Property(l => l.Technology)
-                .HasConversion<int>();
+                .HasOne(s => s.Room)
+                .WithMany(r => r.Showings)
+                .HasForeignKey(s => s.RoomId);
+
+            modelBuilder.Entity<Showing>()
+                .HasOne(s => s.Film)
+                .WithMany(f => f.Showings)
+                .HasForeignKey(s => s.FilmId);
+
+            modelBuilder.Entity<Reservation>()
+                .HasMany(r => r.Seats)
+                .WithOne();
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Showing)
+                .WithMany(s => s.Reservations)
+                .HasForeignKey(r => r.ShowingId);
+
         }
 
 

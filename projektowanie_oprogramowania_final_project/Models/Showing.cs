@@ -23,20 +23,17 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Key]
         public int ShowingId { get; set; }
 
-        public int? FilmId;
+        public int? FilmId { get; set; }
 
-        [ForeignKey(nameof(FilmId))]
-        public virtual Film ShowedFilm { get; set; }
+        public Film Film { get; set; }
 
         public int? CinemaId { get; set; }
 
-        [ForeignKey(nameof(CinemaId))]
-        public virtual Cinema Cinema { get; set; }
+        public Cinema Cinema { get; set; }
 
-        public int? RoomId { get; set;  }
+        public int? RoomId { get; set; }
 
-        [ForeignKey(nameof(RoomId))]
-        public virtual Room ScreeningRoom { get; set; }
+        public Room Room { get; set; }
 
         [DataType(DataType.DateTime)]
         [Required]
@@ -53,12 +50,11 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Range(0.0, Double.MaxValue, ErrorMessage = "The value has to be bigger than 0")]
         public double Price { get; set; }
 
-        [InverseProperty(nameof(Reservation.Showing))]
         public ICollection<Reservation> Reservations { get; set; }
 
         public override string ToString()
         {
-            return ShowedFilm + ", " + Technology + ", " + Language + ", " + Showtime;
+            return Film + ", " + Technology + ", " + Language + ", " + Showtime;
         }
     }
 }

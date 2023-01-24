@@ -19,8 +19,7 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         public int? RoomId { get; set; }
 
-        [ForeignKey(nameof(RoomId))]
-        public virtual Room Room { get; set; }
+        public Room Room { get; set; }
 
         public override string ToString()
         {

@@ -27,7 +27,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Seats
         [BindProperty]
         public int cinema { get; set; }
 
-        public async Task OnGetAsync(int? cinema_id)
+        public async Task OnGetAsync(int? cinema_id, int? room_id)
         {
             ViewData["Cinemas"] = _context.Cinemas.ToList();
             ViewData["Rooms"] = _context.Rooms
@@ -37,7 +37,8 @@ namespace projektowanie_oprogramowania_final_project.Pages.Seats
             Seat = await _context.Seats
                 .Include(s => s.Room)
                 .Include(s => s.Room.Cinema)
-                .Where(s => s.Room.CinemaId == cinema_id).ToListAsync();
+                .Where(s => s.Room.CinemaId == cinema_id)
+                .Where(s => s.RoomId == room_id).ToListAsync();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model projektowanie_oprogramowania_final_project.Pages.Showings.CreateModel
 
 @{
@@ -14,18 +14,24 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Showing.CinemaId" class="control-label"></label>
-                <select asp-for="Showing.CinemaId" class ="form-control" asp-items="ViewBag.CinemaId"></select>
-            </div>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Showing.ScreeningRoom" class="control-label"></label>
-                <select id="roomSelect" asp-for="Showing.ScreeningRoom" class="form-control" asp-items="ViewBag.Rooms"></select>
+                <label asp-for="Showing.Film" class="control-label"></label>
+                <select asp-for="Showing.FilmId" id="FilmId" class="form-control" asp-items="ViewBag.FilmId">
+                    <option value="Please select"></option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="Showing.FilmId" class="control-label"></label>
-                <select asp-for="Showing.FilmId" class="form-control" asp-items="ViewBag.FilmId"></select>
+                <label asp-for="Showing.Cinema" class="control-label"></label>
+                <select asp-for="Showing.CinemaId" id="CinemaId" class="form-control" asp-items="ViewBag.CinemaId">
+                    <option value="Please select"></option>
+                </select>
             </div>
+            <div class="form-group">
+                <label asp-for="Showing.Room" class="control-label"></label>
+                <select asp-for="Showing.RoomId" id="Room" class="form-control">
+                    <option value="Please select"></option>
+                </select>
+            </div>
+            
             <div class="form-group">
                 <label asp-for="Showing.Showtime" class="control-label"></label>
                 <input asp-for="Showing.Showtime" class="form-control" />
@@ -67,14 +73,19 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-        <script>
-            $("#CinemaId").change(function () {
-                $.get("/GetRoom", { id: $("#CinemaId").val() }, function (data) {
-                    $("#RoomId").empty();
-                    $.each(data, function (index, row) {
-                        $("#RoomId").append("<option value='" + row.RoomId + "'>" + row.RoomNumber + "</option>")
-                    });
+    <script type="text/javascript">
+        $("#CinemaId").on("change", cinemaChanged);
+
+        function cinemaChanged() {
+            var c_id = this.value;
+            $("#Room").empty();
+            $.get(`/showings/create?handler=Rooms&cinema_id=${c_id}`, function (rooms) {       
+
+                $.each(rooms, function (i, room) {
+                    $("#Room").append(`<option value="${room.roomId}">${room.roomNumber}</option>`);
                 });
-            })
-        </script>
+            });
+        }
+    </script>
+
 }

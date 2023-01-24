@@ -12,6 +12,7 @@ using projektowanie_oprogramowania_final_project.Models;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Showings
 {
@@ -29,7 +30,6 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
         {
             ViewData["CinemaId"] = new SelectList(_context.Cinemas, "CinemaId", null);
             ViewData["FilmId"] = new SelectList(_context.Films, "FilmId", null);
-            ViewData["Rooms"] = new SelectList(_context.Rooms, "RoomId", null);
             return Page();
         }
 
@@ -37,7 +37,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
         public Showing Showing { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -48,6 +48,15 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        public IList<Room> Rooms { get; set; }
+        public IActionResult OnGetRooms(int cinema_id)
+        {
+            Rooms = _context.Rooms
+                .Where(r => r.CinemaId == cinema_id)
+                .ToList();
+            return new JsonResult(Rooms);
         }
     }
 }
