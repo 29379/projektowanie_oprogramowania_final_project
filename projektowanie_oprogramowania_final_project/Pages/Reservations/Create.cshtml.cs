@@ -35,7 +35,9 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
                         .Select(s => s.RoomId)
                         .First();
 
-            ViewData["ShowingId"] = new SelectList(_context.Showings.Where(s => s.ShowingId == id), "ShowingId", null);
+            var showing = _context.Showings.Include(s => s.Film).Where(s => s.ShowingId == id).First();
+            ViewData["Showing"] = showing;
+            ViewData["ShowingId"] = showing.ShowingId;
             ViewData["SeatId"] = new MultiSelectList(_context.Seats.Where(s => s.RoomId == room), "SeatId", null);
             return Page();
         }

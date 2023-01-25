@@ -60,28 +60,27 @@
 @foreach (var item in Model.Showing) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Film)
+                @(item.Film.ToString())
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Showtime)
+                @(item.Showtime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Language)
+                    @(item.Language)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Technology)
+                    @(item.Technology)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                    @(item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cinema)
+                    @(item.Cinema)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Room)
+                    @(item.Room)
             </td>
             <td>
-                <a asp-page="./Details" asp-route-id="@item.ShowingId">Details</a>
                 @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
                 {
                     <a asp-page="./Edit" asp-route-id="@item.ShowingId">Edit</a> 
