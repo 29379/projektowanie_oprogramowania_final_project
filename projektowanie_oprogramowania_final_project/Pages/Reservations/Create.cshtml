@@ -56,13 +56,11 @@
             $("#Seats").on("change", seatChanged);
 
             function seatChanged() {
-                var t = this.value.length;
-                console.log(t);
+                var t = $("#Seats").val().length;
+                    console.log($("#Seats").val())
                 var s_id = $("#ShowingId").val();
-                console.log(s_id)
                     $("#Price").val(0);
                 $.get(`/reservations/create?handler=Price&showing_id=${s_id}&tickets=${t}`, function (price) {       
-                        console.log(price);
                     $("#Price").val(price);
                 });
             }
