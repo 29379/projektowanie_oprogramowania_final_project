@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using projektowanie_oprogramowania_final_project;
 using projektowanie_oprogramowania_final_project.Models;
 
@@ -22,9 +23,12 @@ namespace projektowanie_oprogramowania_final_project.Pages.Seats
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int? cinema_id)
         {
-        ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomNumber");
+            ViewData["Cinemas"] = _context.Cinemas.ToList();
+            ViewData["RoomId"] = new SelectList(_context.Rooms
+                .Include(r => r.Cinema)
+                .Where(r => r.CinemaId == cinema_id), "RoomId", null);
             return Page();
         }
 

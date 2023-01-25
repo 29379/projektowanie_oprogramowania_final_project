@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace projektowanie_oprogramowania_final_project.Models
 {
@@ -19,7 +20,6 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public double Price { get; set; }
 
-        [Required]
         public ICollection<Seat> Seats { get; set; }
 
         [Required]
@@ -27,16 +27,7 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         public int? ShowingId { get; set; }
 
-        public Showing? Showing;
+        public Showing Showing { get; set; }
 
-        public Reservation() { }
-
-        public Reservation(int reservationId, double price, ICollection<Seat> seats, PaymentMethod chosenPayment)
-        {
-            ReservationId = reservationId;
-            Price = price;
-            Seats = seats;
-            ChosenPayment = chosenPayment;
-        }
     }
 }

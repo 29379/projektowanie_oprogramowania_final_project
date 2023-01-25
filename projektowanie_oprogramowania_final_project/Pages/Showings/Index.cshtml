@@ -7,14 +7,33 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+{
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+}
+<form  method="get">
+    <div class="form-group">
+            <label>Cinema</label>
+            <select class="form-control" name="id">
+            @foreach (var cinema in ViewBag.Cinemas)
+            {
+                            <option value="@cinema.CinemaId">@cinema</option>
+            }
+            </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="OK" class="btn btn-primary" />
+    </div>
+
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Showing[0].ShowedFilm.Title)
+                @Html.DisplayNameFor(model => model.Showing[0].Film)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Showing[0].Showtime)
@@ -31,6 +50,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Showing[0].Cinema)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Room)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -38,29 +60,34 @@
 @foreach (var item in Model.Showing) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ShowedFilm.Title)
+                @(item.Film.ToString())
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Showtime)
+                @(item.Showtime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Language)
+                    @(item.Language)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Technology)
+                    @(item.Technology)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                    @(item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cinema.Street)
+                    @(item.Cinema)
             </td>
             <td>
-                <a asp-page="./Details" asp-route-id="@item.ShowingId">Details</a>
+                    @(item.Room)
+            </td>
+            <td>
                 @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
                 {
                     <a asp-page="./Edit" asp-route-id="@item.ShowingId">Edit</a> 
                     <a asp-page="./Delete" asp-route-id="@item.ShowingId">Delete</a>
+                }
+                else if(User.Identity.IsAuthenticated){
+                    <a asp-page="../Reservations/Create" asp-route-id="@item.ShowingId">Buy ticket</a> 
                 }
             </td>
         </tr>

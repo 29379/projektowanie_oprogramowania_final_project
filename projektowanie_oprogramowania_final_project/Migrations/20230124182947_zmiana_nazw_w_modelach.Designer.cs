@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projektowanie_oprogramowania_final_project;
 
 namespace projektowanie_oprogramowania_final_project.Migrations
 {
     [DbContext(typeof(CinemaDbContext))]
-    partial class CinemaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230124182947_zmiana_nazw_w_modelach")]
+    partial class zmiana_nazw_w_modelach
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -470,7 +472,8 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                 {
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Cinema", "Cinema")
                         .WithMany("Showings")
-                        .HasForeignKey("CinemaId");
+                        .HasForeignKey("CinemaId")
+                        .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Film", "Film")
                         .WithMany("Showings")

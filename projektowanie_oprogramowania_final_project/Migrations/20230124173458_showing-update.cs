@@ -2,7 +2,7 @@
 
 namespace projektowanie_oprogramowania_final_project.Migrations
 {
-    public partial class test : Migration
+    public partial class showingupdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

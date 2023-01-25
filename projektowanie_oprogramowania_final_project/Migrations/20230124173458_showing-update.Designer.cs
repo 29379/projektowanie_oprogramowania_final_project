@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projektowanie_oprogramowania_final_project;
 
 namespace projektowanie_oprogramowania_final_project.Migrations
 {
     [DbContext(typeof(CinemaDbContext))]
-    partial class CinemaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230124173458_showing-update")]
+    partial class showingupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -470,21 +472,22 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                 {
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Cinema", "Cinema")
                         .WithMany("Showings")
-                        .HasForeignKey("CinemaId");
+                        .HasForeignKey("CinemaId")
+                        .OnDelete(DeleteBehavior.ClientCascade);
 
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Film", "Film")
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Film", "ShowedFilm")
                         .WithMany("Showings")
                         .HasForeignKey("FilmId");
 
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Room", "Room")
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Room", "ScreeningRoom")
                         .WithMany("Showings")
                         .HasForeignKey("RoomId");
 
                     b.Navigation("Cinema");
 
-                    b.Navigation("Film");
+                    b.Navigation("ScreeningRoom");
 
-                    b.Navigation("Room");
+                    b.Navigation("ShowedFilm");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Cinema", b =>

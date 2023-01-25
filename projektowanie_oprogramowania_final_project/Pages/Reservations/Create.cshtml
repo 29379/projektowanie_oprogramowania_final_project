@@ -10,19 +10,24 @@
 <h4>Reservation</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Reservation.ShowingId" class="control-label"></label>
-                <select asp-for="Reservation.ShowingId" class ="form-control" asp-items="ViewBag.ShowingId"></select>
+                <label asp-for="Reservation.Showing" class="control-label"></label>
+                <input hidden readonly type="text" asp-for="Reservation.ShowingId" id="ShowingId" class ="form-control" value="@ViewBag.ShowingId"></input>
+                <input readonly type="text" class ="form-control" value="@ViewBag.Showing"></input>
             </div>
 
-            <p>How to add seats?</p>
+            <div class="form-group">
+                <label asp-for="Reservation.Seats" class="control-label"></label>
+                <select multiple="multiple" asp-for="Reservation.Seats" id="Seats" class ="form-control" asp-items="ViewBag.SeatId"></select>
+            </div>
+
 
             <div class="form-group">
                 <label asp-for="Reservation.Price" class="control-label"></label>
-                <input asp-for="Reservation.Price" class="form-control" />
+                <input readonly asp-for="Reservation.Price" id="Price" class="form-control" />
                 <span asp-validation-for="Reservation.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -47,4 +52,18 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script type="text/javascript">
+            $("#Seats").on("change", seatChanged);
+
+            function seatChanged() {
+                var t = $("#Seats").val().length;
+                    console.log($("#Seats").val())
+                var s_id = $("#ShowingId").val();
+                    $("#Price").val(0);
+                $.get(`/reservations/create?handler=Price&showing_id=${s_id}&tickets=${t}`, function (price) {       
+                    $("#Price").val(price);
+                });
+            }
+        </script>
+
 }

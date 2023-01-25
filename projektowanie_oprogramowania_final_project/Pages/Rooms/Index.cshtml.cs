@@ -25,10 +25,12 @@ namespace projektowanie_oprogramowania_final_project.Pages.Rooms
 
         public IList<Room> Room { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? id)
         {
+            ViewData["Cinemas"] = _context.Cinemas.ToList();
             Room = await _context.Rooms
-                .Include(r => r.Cinema).ToListAsync();
+                .Include(r => r.Cinema)
+                .Where(r => r.CinemaId == id).ToListAsync();
         }
     }
 }

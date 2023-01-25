@@ -8,12 +8,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using projektowanie_oprogramowania_final_project;
 using projektowanie_oprogramowania_final_project.Models;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Reservations
 {
-    [Authorize(Roles = "Admin, Employee")]
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly CinemaDbContext _context;
@@ -26,9 +27,18 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
             _hostEnvironment = hostEnvironment;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int? id)
         {
-            ViewData["ShowingId"] = new SelectList(_context.Showings, "ShowingId", "Showtime");
+            var room = _context.Showings
+                        .Include(s => s.Room)
+                        .Where(s => s.ShowingId == id)
+                        .Select(s => s.RoomId)
+                        .First();
+
+            var showing = _context.Showings.Include(s => s.Film).Where(s => s.ShowingId == id).First();
+            ViewData["Showing"] = showing;
+            ViewData["ShowingId"] = showing.ShowingId;
+            ViewData["SeatId"] = new MultiSelectList(_context.Seats.Where(s => s.RoomId == room), "SeatId", null);
             return Page();
         }
 
@@ -45,8 +55,21 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
 
             _context.Reservations.Add(Reservation);
             await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+            {
+                return RedirectToPage("./Index");
+            }
+            else
+            {
+                return RedirectToPage("./Details", new { id = Reservation.ReservationId });
+            }
         }
+
+        public IActionResult OnGetPrice(int showing_id, int tickets)
+        {
+            var price = _context.Showings.Where(s => s.ShowingId == showing_id).First().Price * tickets;
+            return new JsonResult(price);
+        }
+
     }
 }
