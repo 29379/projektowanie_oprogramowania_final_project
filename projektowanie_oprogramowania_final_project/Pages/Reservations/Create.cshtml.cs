@@ -55,8 +55,14 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
 
             _context.Reservations.Add(Reservation);
             await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+            {
+                return RedirectToPage("./Index");
+            }
+            else
+            {
+                return RedirectToPage("./Details", new { id = Reservation.ReservationId });
+            }
         }
 
         public IActionResult OnGetPrice(int showing_id, int tickets)

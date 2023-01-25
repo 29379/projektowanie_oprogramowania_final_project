@@ -12,7 +12,6 @@ using projektowanie_oprogramowania_final_project.Models;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Reservations
 {
-    [Authorize(Roles = "Admin, Employee")]
     public class DetailsModel : PageModel
     {
         private readonly CinemaDbContext _context;
