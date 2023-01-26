@@ -45,6 +45,10 @@ namespace projektowanie_oprogramowania_final_project
                 .WithMany(r => r.Seats)
                 .HasForeignKey(s => s.RoomId);
 
+            modelBuilder.Entity<Seat>()
+                .HasMany(s => s.Reservations)
+                .WithMany(r => r.Seats);
+
             modelBuilder.Entity<Film>()
                 .HasMany(c => c.Showings)
                 .WithOne(s => s.Film);
@@ -70,7 +74,7 @@ namespace projektowanie_oprogramowania_final_project
 
             modelBuilder.Entity<Reservation>()
                 .HasMany(r => r.Seats)
-                .WithOne();
+                .WithMany(s => s.Reservations);
 
             modelBuilder.Entity<Reservation>()
                 .HasOne(r => r.Showing)
