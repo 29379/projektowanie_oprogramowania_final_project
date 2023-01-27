@@ -297,6 +297,21 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.ToTable("Reservations");
                 });
 
+            modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.ReservationSeat", b =>
+                {
+                    b.Property<int?>("ReservationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SeatId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservationId", "SeatId");
+
+                    b.HasIndex("SeatId");
+
+                    b.ToTable("ReservationSeats");
+                });
+
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Room", b =>
                 {
                     b.Property<int>("RoomId")
@@ -324,9 +339,6 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ReservationId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("RoomId")
                         .HasColumnType("int");
 
@@ -337,8 +349,6 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("SeatId");
-
-                    b.HasIndex("ReservationId");
 
                     b.HasIndex("RoomId");
 
@@ -444,6 +454,25 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Navigation("Showing");
                 });
 
+            modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.ReservationSeat", b =>
+                {
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Reservation", "Reservation")
+                        .WithMany("ReservationSeats")
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Seat", "Seat")
+                        .WithMany("ReservationSeats")
+                        .HasForeignKey("SeatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reservation");
+
+                    b.Navigation("Seat");
+                });
+
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Room", b =>
                 {
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Cinema", "Cinema")
@@ -455,10 +484,6 @@ namespace projektowanie_oprogramowania_final_project.Migrations
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Seat", b =>
                 {
-                    b.HasOne("projektowanie_oprogramowania_final_project.Models.Reservation", null)
-                        .WithMany("Seats")
-                        .HasForeignKey("ReservationId");
-
                     b.HasOne("projektowanie_oprogramowania_final_project.Models.Room", "Room")
                         .WithMany("Seats")
                         .HasForeignKey("RoomId");
@@ -501,7 +526,7 @@ namespace projektowanie_oprogramowania_final_project.Migrations
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Reservation", b =>
                 {
-                    b.Navigation("Seats");
+                    b.Navigation("ReservationSeats");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Room", b =>
@@ -509,6 +534,11 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Navigation("Seats");
 
                     b.Navigation("Showings");
+                });
+
+            modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Seat", b =>
+                {
+                    b.Navigation("ReservationSeats");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.Showing", b =>

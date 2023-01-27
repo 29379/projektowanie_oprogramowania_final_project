@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using Microsoft.CodeAnalysis.Differencing;
+using System.Diagnostics.Contracts;
 
 namespace projektowanie_oprogramowania_final_project
 {
@@ -11,6 +13,7 @@ namespace projektowanie_oprogramowania_final_project
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Film> Films { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<ReservationSeat> ReservationSeats { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Showing> Showings { get; set; }
@@ -69,13 +72,22 @@ namespace projektowanie_oprogramowania_final_project
                 .HasForeignKey(s => s.FilmId);
 
             modelBuilder.Entity<Reservation>()
-                .HasMany(r => r.Seats)
-                .WithOne();
-
-            modelBuilder.Entity<Reservation>()
                 .HasOne(r => r.Showing)
                 .WithMany(s => s.Reservations)
                 .HasForeignKey(r => r.ShowingId);
+
+            modelBuilder.Entity<ReservationSeat>()
+                .HasKey(c => new { c.ReservationId, c.SeatId });
+
+            modelBuilder.Entity<Reservation>()
+                .HasMany(c => c.ReservationSeats)
+                .WithOne(s => s.Reservation)
+                .HasForeignKey(c => c.ReservationId);
+
+            modelBuilder.Entity<Seat>()
+                .HasMany(c => c.ReservationSeats)
+                .WithOne(s => s.Seat)
+                .HasForeignKey(c => c.SeatId);
 
         }
 

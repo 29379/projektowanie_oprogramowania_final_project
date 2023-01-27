@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using projektowanie_oprogramowania_final_project;
 using projektowanie_oprogramowania_final_project.Models;
 
@@ -38,12 +39,33 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
             var showing = _context.Showings.Include(s => s.Film).Where(s => s.ShowingId == id).First();
             ViewData["Showing"] = showing;
             ViewData["ShowingId"] = showing.ShowingId;
-            ViewData["SeatId"] = new MultiSelectList(_context.Seats.Where(s => s.RoomId == room), "SeatId", null);
+
+            //rezerwacje na ten showing:
+            var reservations = _context.Reservations.Where(r => r.ShowingId == id).ToList();
+
+            //zajete miejsca na ten showing:
+            List<Seat> reservedSeats = new List<Seat>();
+            foreach(Reservation res in reservations)
+            {
+                var resSeats = _context.ReservationSeats.Where(r => r.ReservationId == res.ReservationId).Include(r => r.Seat).Select(r => r.Seat).ToList();
+                reservedSeats.AddRange(resSeats);
+            }
+
+            var test = reservedSeats.Select(x => x.SeatId).ToList();
+
+            //wszystkie miejsca na sali:
+            var seats = _context.Seats.Where(s => s.RoomId == room).AsQueryable();
+
+
+            ViewData["SeatId"] = new SelectList(seats.Where(s => !test.Contains(s.SeatId)), "SeatId", null);
             return Page();
         }
 
         [BindProperty]
         public Reservation Reservation { get; set; }
+
+        [BindProperty]
+        public List<int> SelectedAnswers { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -53,6 +75,14 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
                 return Page();
             }
 
+            Reservation.ReservationSeats = new List<ReservationSeat>();
+            for (int i = 0; i < SelectedAnswers.Count; i++)
+            {
+                Seat seat = _context.Seats.Where(s => s.SeatId == SelectedAnswers[i]).First();
+                ReservationSeat seat2 = new ReservationSeat(Reservation.ReservationId, seat.SeatId);
+                _context.ReservationSeats.Add(seat2);
+                Reservation.ReservationSeats.Add(seat2);
+            }
             _context.Reservations.Add(Reservation);
             await _context.SaveChangesAsync();
             if (User.IsInRole("Admin") || User.IsInRole("Employee"))
@@ -63,6 +93,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
             {
                 return RedirectToPage("./Details", new { id = Reservation.ReservationId });
             }
+            
         }
 
         public IActionResult OnGetPrice(int showing_id, int tickets)

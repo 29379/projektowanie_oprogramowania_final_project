@@ -20,7 +20,8 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public double Price { get; set; }
 
-        public ICollection<Seat> Seats { get; set; }
+        public ICollection<ReservationSeat> ReservationSeats { get; set; }
+
 
         [Required]
         public PaymentMethod ChosenPayment { get; set; }
