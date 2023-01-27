@@ -21,7 +21,7 @@ namespace projektowanie_oprogramowania_final_project.Models
 
         public Room Room { get; set; }
 
-        public ICollection<Reservation> Reservations { get; set; }
+        public ICollection<ReservationSeat> ReservationSeats { get; set; }
 
         public override string ToString()
         {

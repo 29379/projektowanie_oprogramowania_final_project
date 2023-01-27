@@ -31,6 +31,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
             }
 
             Reservation = await _context.Reservations.FirstOrDefaultAsync(m => m.ReservationId == id);
+            ViewData["ReservationSeats"] = _context.ReservationSeats.Include(s => s.Seat).Where(r => r.ReservationId == id);
 
             if (Reservation == null)
             {

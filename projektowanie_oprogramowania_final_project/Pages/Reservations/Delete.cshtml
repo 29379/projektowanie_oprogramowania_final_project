@@ -25,14 +25,14 @@
             @Html.DisplayFor(model => model.Reservation.ChosenPayment)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Reservation.Seats)
+            @Html.DisplayNameFor(model => model.Reservation.ReservationSeats)
         </dt>
         <dd class="col-sm-10">
-            @if (Model.Reservation.Seats != null && Model.Reservation.Seats.Any())
+            @if (Model.Reservation.ReservationSeats != null && Model.Reservation.ReservationSeats.Any())
             {
-                @foreach (var seat in Model.Reservation.Seats)
+                @foreach (var seat in Model.Reservation.ReservationSeats)
                 {
-                    @Html.DisplayFor(model => seat.SeatNumber)
+                    @Html.DisplayFor(model => seat.Seat)
                 }
             }
         </dd>
