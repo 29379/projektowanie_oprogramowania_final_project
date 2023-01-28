@@ -30,7 +30,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
                 return NotFound();
             }
 
-            Reservation = await _context.Reservations.FirstOrDefaultAsync(m => m.ReservationId == id);
+            Reservation = await _context.Reservations.Include(r => r.User).FirstOrDefaultAsync(m => m.ReservationId == id);
             ViewData["ReservationSeats"] = _context.ReservationSeats.Include(s => s.Seat).Where(r => r.ReservationId == id);
 
             if (Reservation == null)

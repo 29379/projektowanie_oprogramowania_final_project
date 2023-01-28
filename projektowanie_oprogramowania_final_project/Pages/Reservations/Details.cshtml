@@ -5,12 +5,22 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Reservation confirmed!</h1>
+@if(!User.IsInRole("Admin") && !User.IsInRole("Employee"))
+{
+    <h1>Reservation confirmed!</h1>
+}
+
 
 <div>
     <h4>Details</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reservation.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reservation.User.Email)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Reservation.Price)
         </dt>

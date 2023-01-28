@@ -26,7 +26,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
 
         public async Task OnGetAsync()
         {
-            Reservation = await _context.Reservations.ToListAsync();
+            Reservation = await _context.Reservations.Include(r => r.User).ToListAsync();
         }
     }
 }

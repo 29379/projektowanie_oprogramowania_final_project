@@ -290,9 +290,14 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                     b.Property<int?>("ShowingId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ReservationId");
 
                     b.HasIndex("ShowingId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -451,7 +456,13 @@ namespace projektowanie_oprogramowania_final_project.Migrations
                         .WithMany("Reservations")
                         .HasForeignKey("ShowingId");
 
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Showing");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("projektowanie_oprogramowania_final_project.Models.ReservationSeat", b =>

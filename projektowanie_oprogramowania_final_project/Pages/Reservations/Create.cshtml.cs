@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,10 +22,12 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
     {
         private readonly CinemaDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public CreateModel(CinemaDbContext context, IWebHostEnvironment hostEnvironment)
+        public CreateModel(CinemaDbContext context, IWebHostEnvironment hostEnvironment, UserManager<IdentityUser> userManager)
         {
-            
+            _userManager = userManager;
+
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
@@ -83,6 +87,12 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
                 _context.ReservationSeats.Add(seat2);
                 Reservation.ReservationSeats.Add(seat2);
             }
+
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserName = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            Reservation.User = await _userManager.GetUserAsync(HttpContext.User);
+            Reservation.UserId = Reservation.User.Id;
+
             _context.Reservations.Add(Reservation);
             await _context.SaveChangesAsync();
             if (User.IsInRole("Admin") || User.IsInRole("Employee"))
