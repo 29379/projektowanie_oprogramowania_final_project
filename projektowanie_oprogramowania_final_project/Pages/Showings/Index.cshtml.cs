@@ -24,14 +24,29 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
 
         public IList<Showing> Showing { get;set; }
 
-        public async Task OnGetAsync(int? id)
+        public async Task OnGetAsync(int? cinema_id, DateTime? dateTime)
         {
+            
+            if (dateTime.HasValue)
+            {
+                var date = dateTime.Value;
+                Showing = await _context.Showings
+                                .Include(s => s.Cinema)
+                                .Include(s => s.Room)
+                                .Include(s => s.Film)
+                                .Where(s => s.CinemaId == cinema_id)
+                                .Where(s => s.Showtime.Date.Equals(date.Date)).ToListAsync();
+            }
+            else
+            {
+                Showing = await _context.Showings
+                                .Include(s => s.Cinema)
+                                .Include(s => s.Room)
+                                .Include(s => s.Film)
+                                .Where(s => s.CinemaId == cinema_id).ToListAsync();
+            }
             ViewData["Cinemas"] = _context.Cinemas.ToList();
-            Showing = await _context.Showings
-                .Include(s => s.Cinema)
-                .Include(s => s.Room)
-                .Include(s => s.Film)
-                .Where(s => s.CinemaId == id).ToListAsync();
+            
         }
     }
 }
