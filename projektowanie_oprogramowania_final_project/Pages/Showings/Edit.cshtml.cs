@@ -13,7 +13,7 @@ using projektowanie_oprogramowania_final_project.Models;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Showings
 {
-    [Authorize(Roles = "Admin, Employee")]
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly CinemaDbContext _context;

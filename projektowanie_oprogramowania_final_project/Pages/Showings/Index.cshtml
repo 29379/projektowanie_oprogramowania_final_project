@@ -19,7 +19,7 @@
             <select class="form-control" name="id">
             @foreach (var cinema in ViewBag.Cinemas)
             {
-                            <option value="@cinema.CinemaId">@cinema</option>
+                <option value="@cinema.CinemaId">@cinema</option>
             }
             </select>
     </div>
@@ -32,6 +32,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Film)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Showing[0].Film)
             </th>

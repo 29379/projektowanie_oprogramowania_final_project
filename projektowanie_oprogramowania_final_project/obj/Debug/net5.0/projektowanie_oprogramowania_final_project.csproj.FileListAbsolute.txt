@@ -411,3 +411,4 @@ C:\Users\bea\Desktop\PWr\sem5\po_projekt\projektowanie_oprogramowania_final_proj
 C:\Users\bea\Desktop\PWr\sem5\po_projekt\projektowanie_oprogramowania_final_project\projektowanie_oprogramowania_final_project\obj\Debug\net5.0\projektowanie_oprogramowania_final_project.pdb
 C:\Users\bea\Desktop\PWr\sem5\po_projekt\projektowanie_oprogramowania_final_project\projektowanie_oprogramowania_final_project\obj\Debug\net5.0\projektowanie_oprogramowania_final_project.genruntimeconfig.cache
 C:\Users\bea\Desktop\PWr\sem5\po_projekt\projektowanie_oprogramowania_final_project\projektowanie_oprogramowania_final_project\obj\Debug\net5.0\ref\projektowanie_oprogramowania_final_project.dll
+C:\Users\Lenovo\source\repos\projektowanie_oprogramowania_final_project\projektowanie_oprogramowania_final_project\obj\Debug\net5.0\Razor\Pages\Contact\Create.cshtml.g.cs

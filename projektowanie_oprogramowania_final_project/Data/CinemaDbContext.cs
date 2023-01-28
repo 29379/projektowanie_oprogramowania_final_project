@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.CodeAnalysis.Differencing;
 using System.Diagnostics.Contracts;
+using System;
 
 namespace projektowanie_oprogramowania_final_project
 {
@@ -89,8 +90,31 @@ namespace projektowanie_oprogramowania_final_project
                 .WithOne(s => s.Seat)
                 .HasForeignKey(c => c.SeatId);
 
-        }
+            modelBuilder.Entity<Cinema>().HasData(
+                new Cinema
+                {
+                    CinemaId = 1,
+                    Street = "Sezamkowa",
+                    Number = 1,
+                    ZipCode = "97-500"
+                }
+            );
 
+            modelBuilder.Entity<Film>().HasData(
+                new Film
+                {
+                    FilmId = 1,
+                    Title = "Pulp Fiction",
+                    Director = "Quentin Tarantino",
+                    ReleaseDate = new DateTime(1995, 5, 19, 0, 0, 0).Date,
+                    Description = "",
+                    RunningTime = new TimeSpan(2, 30, 0),
+                    ImagePath = "wwwroot/upload/pulp-fiction-cover.jpg"
+                }
+            );
+            
+
+        }
 
     }
 }
