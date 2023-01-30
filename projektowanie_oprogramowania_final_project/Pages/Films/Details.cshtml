@@ -12,64 +12,25 @@
     <hr />
 
     <dl class="row">
-        <dt class="col-sm-1">
-            @Html.DisplayNameFor(model => model.Film.Image)
-        </dt>
-        <dd class = "col-sm-3">
-                @if (Model.Film.ImagePath == null)
-                {
-                    <img src="/images/no-image.jpg"/>
-                }
-                else
-                {
-                    <img src="/@Model.Film.ImagePath" width=100 height=150/>
-                }
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Film.Title)
-        </dt>
-        <dd class="col-sm-6">
-            @Html.DisplayFor(model => model.Film.Title)
-        </dd>
-        <dt class="col-sm-1">
-        <dd class = "col-sm-3">
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Film.Director)
-        </dt>
-        <dd class="col-sm-6">
-            @Html.DisplayFor(model => model.Film.Director)
-        </dd>
-        <dt class="col-sm-1">
-        <dd class = "col-sm-3">
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Film.ReleaseDate)
-        </dt>
-        <dd class="col-sm-6">
-            @Html.DisplayFor(model => model.Film.ReleaseDate)
-        </dd>
-        <dt class="col-sm-1">
-        <dd class = "col-sm-3">
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Film.RunningTime)
-        </dt>
-        <dd class="col-sm-6">
-            @Html.DisplayFor(model => model.Film.RunningTime)
-        </dd>
-        <dt class="col-sm-1">
-        <dd class = "col-sm-3">
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Film.Description)
-        </dt>
-        <dd class="col-sm-6">
-            @Html.DisplayFor(model => model.Film.Description)
-        </dd>
+        
+
+        <div style="display: flex;">
+            <img src="/@Model.Film.ImagePath" width=400 height=600 />
+            <dl style="margin-left: 20px;">
+                <dt>Title:</dt>
+                <dd>@Model.Film.Title</dd>
+                <dt>Director:</dt>
+                <dd>@Model.Film.Director</dd>
+                <dt>Release Date:</dt>
+                <dd>@Model.Film.ReleaseDate.ToString("MMMM dd, yyyy")</dd>
+                <dt>Running Time:</dt>
+                <dd>@Model.Film.RunningTime.ToString(@"hh\:mm")</dd>
+                <dt>Description:</dt>
+                <dd>@Model.Film.Description</dd>
+            </dl>
+        </div>
 
     </dl>
-    <img class="img-thumbnail" src="@Html.DisplayFor(modelItem => Model.Film.Image)" id="detail_thumbnail"/>
 </div>
 <div>
     @if (User.IsInRole("Admin") || (User.IsInRole("Employee")))

@@ -45,6 +45,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -82,6 +86,12 @@
             "xunit": {
               "target": "Package",
               "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.5, )"
             }
           },
           "imports": [

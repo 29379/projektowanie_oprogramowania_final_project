@@ -624,6 +624,118 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\2c342248-122e-4c77-80ad-8f0ddc85a16b_fellowship-cover.jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\2c342248-122e-4c77-80ad-8f0ddc85a16b_fellowship-cover.jpg.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\2c342248-122e-4c77-80ad-8f0ddc85a16b_fellowship-cover.jpg.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\39597166-7096-4231-aab5-faa258ad62ee_space-oddysey-cover.jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\39597166-7096-4231-aab5-faa258ad62ee_space-oddysey-cover.jpg.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\39597166-7096-4231-aab5-faa258ad62ee_space-oddysey-cover.jpg.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\533166e3-f142-405b-9d3f-ed12237ae811_the-room-cover.jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\533166e3-f142-405b-9d3f-ed12237ae811_the-room-cover.jpg.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\533166e3-f142-405b-9d3f-ed12237ae811_the-room-cover.jpg.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\5abad699-d3f2-4556-ae77-ce794dd7b6aa_blade-runner-2049-cover.jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\5abad699-d3f2-4556-ae77-ce794dd7b6aa_blade-runner-2049-cover.jpg.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\5abad699-d3f2-4556-ae77-ce794dd7b6aa_blade-runner-2049-cover.jpg.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\5acf9323-a83f-4cf0-ab66-470f95a23200_godfather-cover.jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\5acf9323-a83f-4cf0-ab66-470f95a23200_godfather-cover.jpg.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\5acf9323-a83f-4cf0-ab66-470f95a23200_godfather-cover.jpg.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\5bb8f4a1-f4bb-45ed-9cc5-fd4f2593a733_babylon-cover.jfif.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\5bb8f4a1-f4bb-45ed-9cc5-fd4f2593a733_babylon-cover.jfif.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\5bb8f4a1-f4bb-45ed-9cc5-fd4f2593a733_babylon-cover.jfif.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\b2c9a7fa-d44b-4fbc-a626-ba60cd9bc288_basic-instinct-cover.jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\b2c9a7fa-d44b-4fbc-a626-ba60cd9bc288_basic-instinct-cover.jpg.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\b2c9a7fa-d44b-4fbc-a626-ba60cd9bc288_basic-instinct-cover.jpg.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\babylon-cover.jfif))">
       <SourceType>Package</SourceType>
       <SourceId>projektowanie_oprogramowania_final_project</SourceId>
@@ -672,6 +784,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\blade-runner-2049-cover.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\d4194ed6-4794-4528-99a5-509355969372_pulp-fiction-cover-i1288.jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\d4194ed6-4794-4528-99a5-509355969372_pulp-fiction-cover-i1288.jpg.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\d4194ed6-4794-4528-99a5-509355969372_pulp-fiction-cover-i1288.jpg.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\drive-cover.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>projektowanie_oprogramowania_final_project</SourceId>
@@ -687,6 +815,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\drive-cover.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\ea0e09c1-16b3-432e-b197-f0d76aedd9d2_drive-cover.jpg.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>projektowanie_oprogramowania_final_project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/projektowanie_oprogramowania_final_project</BasePath>
+      <RelativePath>upload\ea0e09c1-16b3-432e-b197-f0d76aedd9d2_drive-cover.jpg.jpg</RelativePath>
+      <AssetKind></AssetKind>
+      <AssetMode></AssetMode>
+      <AssetRole></AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\ea0e09c1-16b3-432e-b197-f0d76aedd9d2_drive-cover.jpg.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\upload\fellowship-cover.jpg))">
       <SourceType>Package</SourceType>

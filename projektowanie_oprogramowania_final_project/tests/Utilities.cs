@@ -22,7 +22,7 @@ namespace projektowanie_oprogramowania_final_project.tests
             // IServiceProvider that the context should resolve all of its 
             // services from.
             var builder = new DbContextOptionsBuilder<CinemaDbContext>()
-                .UseInMemoryDatabase("InMemoryDb")
+                .UseInMemoryDatabase("CinemaDb")
                 .UseInternalServiceProvider(serviceProvider);
 
             return builder.Options;

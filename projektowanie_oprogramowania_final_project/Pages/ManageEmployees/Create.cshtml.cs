@@ -33,12 +33,10 @@ namespace projektowanie_oprogramowania_final_project.Pages.ManageEmployees
         }
 
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public CreateModel(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public CreateModel(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
         }
 
         public IActionResult OnGet()

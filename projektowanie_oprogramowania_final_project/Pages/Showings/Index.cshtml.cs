@@ -35,7 +35,9 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
                                 .Include(s => s.Room)
                                 .Include(s => s.Film)
                                 .Where(s => s.CinemaId == cinema_id)
-                                .Where(s => s.Showtime.Date.Equals(date.Date)).ToListAsync();
+                                .Where(s => s.Showtime.Date.Equals(date.Date))
+                                .OrderBy(s => s.Film.Title)
+                                .ToListAsync();
             }
             else
             {
@@ -43,7 +45,9 @@ namespace projektowanie_oprogramowania_final_project.Pages.Showings
                                 .Include(s => s.Cinema)
                                 .Include(s => s.Room)
                                 .Include(s => s.Film)
-                                .Where(s => s.CinemaId == cinema_id).ToListAsync();
+                                .Where(s => s.CinemaId == cinema_id)
+                                .OrderBy(s => s.Film.Title)
+                                .ToListAsync();
             }
             ViewData["Cinemas"] = _context.Cinemas.ToList();
             
