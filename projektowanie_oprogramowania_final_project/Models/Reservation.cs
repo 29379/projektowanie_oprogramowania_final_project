@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace projektowanie_oprogramowania_final_project.Models
@@ -13,7 +12,7 @@ namespace projektowanie_oprogramowania_final_project.Models
         bankTransfer
     }
 
-    public class Reservation
+    public class Reservation 
     {
         [Key]
         public int ReservationId { get; set; }

@@ -48,7 +48,7 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
             var reservations = _context.Reservations.Where(r => r.ShowingId == id).ToList();
 
             //zajete miejsca na ten showing:
-            List<Seat> reservedSeats = new List<Seat>();
+            List<Seat> reservedSeats = new();
             foreach(Reservation res in reservations)
             {
                 var resSeats = _context.ReservationSeats.Where(r => r.ReservationId == res.ReservationId).Include(r => r.Seat).Select(r => r.Seat).ToList();
@@ -58,10 +58,11 @@ namespace projektowanie_oprogramowania_final_project.Pages.Reservations
             var test = reservedSeats.Select(x => x.SeatId).ToList();
 
             //wszystkie miejsca na sali:
-            var seats = _context.Seats.Where(s => s.RoomId == room).AsQueryable();
+            var seats = _context.Seats.Where(s => s.RoomId == room)
+                .AsQueryable();
 
 
-            ViewData["SeatId"] = new SelectList(seats.Where(s => !test.Contains(s.SeatId)), "SeatId", null);
+            ViewData["SeatId"] = new SelectList(seats.Where(s => !test.Contains(s.SeatId)).OrderBy(s => s.Row), "SeatId", null);
             return Page();
         }
 
