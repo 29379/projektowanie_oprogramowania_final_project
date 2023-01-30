@@ -16,7 +16,7 @@ using System.Security.Cryptography;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Showings
 {
-    [Authorize(Roles = "Admin, Employee")]
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly CinemaDbContext _context;

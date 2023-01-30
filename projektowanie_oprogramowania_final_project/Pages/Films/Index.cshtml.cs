@@ -25,7 +25,9 @@ namespace projektowanie_oprogramowania_final_project.Pages.Films
 
         public async Task OnGetAsync()
         {
-            Film = await _context.Films.ToListAsync();
+            Film = await _context.Films
+                .OrderBy(f => f.Title)
+                .ToListAsync();
         }
     }
 }

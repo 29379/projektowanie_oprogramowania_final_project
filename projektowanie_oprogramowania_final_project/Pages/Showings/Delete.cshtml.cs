@@ -12,7 +12,7 @@ using projektowanie_oprogramowania_final_project.Models;
 
 namespace projektowanie_oprogramowania_final_project.Pages.Showings
 {
-    [Authorize(Roles = "Admin, Employee")]
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly CinemaDbContext _context;

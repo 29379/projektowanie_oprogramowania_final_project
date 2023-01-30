@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.CodeAnalysis.Differencing;
 using System.Diagnostics.Contracts;
+using System;
 
 namespace projektowanie_oprogramowania_final_project
 {
@@ -90,7 +91,6 @@ namespace projektowanie_oprogramowania_final_project
                 .HasForeignKey(c => c.SeatId);
 
         }
-
 
     }
 }

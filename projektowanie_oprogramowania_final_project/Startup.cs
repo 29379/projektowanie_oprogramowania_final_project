@@ -7,6 +7,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
 using projektowanie_oprogramowania_final_project.Data;
+using projektowanie_oprogramowania_final_project.Models;
+using System.Reflection.Metadata;
+using Microsoft.Extensions.Options;
+using System;
 
 namespace projektowanie_oprogramowania_final_project
 {
@@ -27,7 +31,7 @@ namespace projektowanie_oprogramowania_final_project
 
             services.AddDbContextPool<CinemaDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CinemaDb")));
-           
+
             services.Configure<RouteOptions>(options =>
             {
                 options.LowercaseUrls = true;
@@ -88,6 +92,10 @@ namespace projektowanie_oprogramowania_final_project
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            using var serviceScope = app.ApplicationServices.CreateScope();
+            var context = serviceScope.ServiceProvider.GetService<CinemaDbContext>();
+            CinemaDbInitializer.SeedData(context);
         }
     }
 }

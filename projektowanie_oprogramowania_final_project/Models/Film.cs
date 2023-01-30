@@ -25,7 +25,7 @@ namespace projektowanie_oprogramowania_final_project.Models
         [Required]
         public TimeSpan RunningTime { get; set; }
 
-        public String ImagePath { get; set; }
+        public string ImagePath { get; set; }
 
         [NotMapped]
         public IFormFile Image { get; set; }
