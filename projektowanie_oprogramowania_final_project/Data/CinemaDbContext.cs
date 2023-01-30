@@ -90,6 +90,11 @@ namespace projektowanie_oprogramowania_final_project
                 .WithOne(s => s.Seat)
                 .HasForeignKey(c => c.SeatId);
 
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.User)
+                .WithMany()
+                .HasForeignKey(r => r.UserId);
+
         }
 
     }

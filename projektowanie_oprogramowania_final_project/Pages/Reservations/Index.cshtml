@@ -11,6 +11,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Reservation[0].User)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Reservation[0].Price)
             </th>
             <th>
@@ -22,6 +25,9 @@
     <tbody>
 @foreach (var item in Model.Reservation) {
         <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>

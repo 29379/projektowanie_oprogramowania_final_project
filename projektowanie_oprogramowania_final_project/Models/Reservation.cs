@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace projektowanie_oprogramowania_final_project.Models
 {
@@ -29,6 +30,11 @@ namespace projektowanie_oprogramowania_final_project.Models
         public int? ShowingId { get; set; }
 
         public Showing Showing { get; set; }
+
+
+        public string? UserId { get; set; }
+
+        public IdentityUser User { get; set; }
 
     }
 }
